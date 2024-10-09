@@ -47,6 +47,7 @@ public class Cadastro extends javax.swing.JFrame {
         tfDataCadastro = new javax.swing.JTextField();
         lblData1 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
+        btnApagar1 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tbprodutos = new javax.swing.JTable();
 
@@ -69,7 +70,7 @@ public class Cadastro extends javax.swing.JFrame {
         lblDataEntrada.setText("Data Entrada:");
 
         btnCadastro.setBackground(new java.awt.Color(217, 232, 255));
-        btnCadastro.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+        btnCadastro.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
         btnCadastro.setText("Cadastrar");
         btnCadastro.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         btnCadastro.setBorderPainted(false);
@@ -79,15 +80,15 @@ public class Cadastro extends javax.swing.JFrame {
             }
         });
 
-        btnAtualizar.setBackground(new java.awt.Color(0, 0, 0));
-        btnAtualizar.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
-        btnAtualizar.setForeground(new java.awt.Color(255, 255, 255));
+        btnAtualizar.setBackground(new java.awt.Color(217, 232, 255));
+        btnAtualizar.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
+        btnAtualizar.setForeground(new java.awt.Color(0, 51, 153));
         btnAtualizar.setText("Atualizar");
         btnAtualizar.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         btnAtualizar.setBorderPainted(false);
 
         btnApagar.setBackground(new java.awt.Color(217, 232, 255));
-        btnApagar.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+        btnApagar.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
         btnApagar.setText("Apagar");
         btnApagar.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         btnApagar.setBorderPainted(false);
@@ -145,6 +146,18 @@ public class Cadastro extends javax.swing.JFrame {
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Sistema de Controle Financeiro ");
 
+        btnApagar1.setBackground(new java.awt.Color(217, 232, 255));
+        btnApagar1.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
+        btnApagar1.setForeground(new java.awt.Color(0, 51, 153));
+        btnApagar1.setText("Salvar");
+        btnApagar1.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btnApagar1.setBorderPainted(false);
+        btnApagar1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnApagar1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -166,15 +179,19 @@ public class Cadastro extends javax.swing.JFrame {
                                 .addComponent(lblNome, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(tfNome, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(70, 70, 70)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(32, 32, 32)
                                 .addComponent(btnCadastro, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
                                 .addComponent(btnAtualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(btnApagar, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(btnApagar, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jLabel1))
+                                .addComponent(btnApagar1, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(83, 83, 83)
+                                .addComponent(jLabel1)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -202,7 +219,7 @@ public class Cadastro extends javax.swing.JFrame {
                 .addComponent(lblGanho)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap(20, Short.MAX_VALUE)
+                .addContainerGap(26, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -233,11 +250,12 @@ public class Cadastro extends javax.swing.JFrame {
                         .addContainerGap())
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(btnCadastro, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnApagar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(btnAtualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnApagar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(btnApagar1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(41, 41, 41))))
         );
 
@@ -255,6 +273,11 @@ public class Cadastro extends javax.swing.JFrame {
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
+            }
+        });
+        tbprodutos.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tbprodutosMouseClicked(evt);
             }
         });
         jScrollPane1.setViewportView(tbprodutos);
@@ -308,7 +331,7 @@ public class Cadastro extends javax.swing.JFrame {
 
     private void btnApagarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnApagarActionPerformed
         int selectedRow = tbprodutos.getSelectedRow();
-        
+
         if (selectedRow != -1) {
             DefaultTableModel tbProdutos = (DefaultTableModel) tbprodutos.getModel();
             tbProdutos.removeRow(selectedRow);  // Remove a linha selecionada
@@ -318,6 +341,22 @@ public class Cadastro extends javax.swing.JFrame {
 
 
     }//GEN-LAST:event_btnApagarActionPerformed
+
+    private void tbprodutosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbprodutosMouseClicked
+
+        if (tbprodutos.getSelectedRow() != -1) {
+            tfNome.setText(tbprodutos.getValueAt(tbprodutos.getSelectedRow(), 0).toString());
+            tfClassificacao.setText(tbprodutos.getValueAt(tbprodutos.getSelectedRow(), 1).toString());
+            tfValor.setText(tbprodutos.getValueAt(tbprodutos.getSelectedRow(), 2).toString());
+            tfData.setText(tbprodutos.getValueAt(tbprodutos.getSelectedRow(), 3).toString());
+            tfDataCadastro.setText(tbprodutos.getValueAt(tbprodutos.getSelectedRow(), 4).toString());
+        }
+
+    }//GEN-LAST:event_tbprodutosMouseClicked
+
+    private void btnApagar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnApagar1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnApagar1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -356,6 +395,7 @@ public class Cadastro extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnApagar;
+    private javax.swing.JButton btnApagar1;
     private javax.swing.JButton btnAtualizar;
     private javax.swing.JButton btnCadastro;
     private javax.swing.JButton btnGanho;

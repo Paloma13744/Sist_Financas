@@ -47,7 +47,7 @@ public class Cadastro extends javax.swing.JFrame {
         tfDataCadastro = new javax.swing.JTextField();
         lblData1 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
-        btnApagar1 = new javax.swing.JButton();
+        btnSalvar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tbprodutos = new javax.swing.JTable();
         btnRecebidos = new javax.swing.JButton();
@@ -92,6 +92,11 @@ public class Cadastro extends javax.swing.JFrame {
         btnAtualizar.setText("Atualizar");
         btnAtualizar.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         btnAtualizar.setBorderPainted(false);
+        btnAtualizar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAtualizarActionPerformed(evt);
+            }
+        });
 
         btnApagar.setBackground(new java.awt.Color(217, 232, 255));
         btnApagar.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
@@ -152,15 +157,15 @@ public class Cadastro extends javax.swing.JFrame {
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Sistema de Controle Financeiro ");
 
-        btnApagar1.setBackground(new java.awt.Color(217, 232, 255));
-        btnApagar1.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
-        btnApagar1.setForeground(new java.awt.Color(0, 51, 153));
-        btnApagar1.setText("Salvar");
-        btnApagar1.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        btnApagar1.setBorderPainted(false);
-        btnApagar1.addActionListener(new java.awt.event.ActionListener() {
+        btnSalvar.setBackground(new java.awt.Color(217, 232, 255));
+        btnSalvar.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
+        btnSalvar.setForeground(new java.awt.Color(0, 51, 153));
+        btnSalvar.setText("Salvar");
+        btnSalvar.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btnSalvar.setBorderPainted(false);
+        btnSalvar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnApagar1ActionPerformed(evt);
+                btnSalvarActionPerformed(evt);
             }
         });
 
@@ -171,20 +176,21 @@ public class Cadastro extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(45, 45, 45)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(lblClassificacao)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(tfClassificacao, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(14, 14, 14)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(lblValor)
                                 .addGap(18, 18, 18)
                                 .addComponent(tfValor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(lblClassificacao)
+                                .addGap(18, 18, 18)
+                                .addComponent(tfClassificacao, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(lblNome, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(tfNome, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(34, 34, 34)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(32, 32, 32)
@@ -194,7 +200,7 @@ public class Cadastro extends javax.swing.JFrame {
                                 .addGap(18, 18, 18)
                                 .addComponent(btnApagar, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(btnApagar1, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(btnSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(83, 83, 83)
                                 .addComponent(jLabel1)))
@@ -262,7 +268,7 @@ public class Cadastro extends javax.swing.JFrame {
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                 .addComponent(btnApagar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(btnAtualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(btnApagar1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(btnSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(41, 41, 41))))
         );
 
@@ -429,9 +435,9 @@ public class Cadastro extends javax.swing.JFrame {
 
     }//GEN-LAST:event_tbprodutosMouseClicked
 
-    private void btnApagar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnApagar1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnApagar1ActionPerformed
+    private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
+
+    }//GEN-LAST:event_btnSalvarActionPerformed
 
     private void btnRecebidosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRecebidosActionPerformed
         // TODO add your handling code here:
@@ -444,6 +450,17 @@ public class Cadastro extends javax.swing.JFrame {
     private void btnDespesas1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDespesas1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnDespesas1ActionPerformed
+
+    private void btnAtualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAtualizarActionPerformed
+        if (tbprodutos.getSelectedRow() != -1) {
+            tbprodutos.setValueAt(tfNome.getText(), tbprodutos.getSelectedRow(), 0);
+            tbprodutos.setValueAt(tfClassificacao.getText(), tbprodutos.getSelectedRow(), 1);
+            tbprodutos.setValueAt(tfValor.getText(), tbprodutos.getSelectedRow(), 2);
+            tbprodutos.setValueAt(tfData.getText(), tbprodutos.getSelectedRow(), 3);
+            tbprodutos.setValueAt(tfDataCadastro.getText(), tbprodutos.getSelectedRow(), 4);
+
+        }
+    }//GEN-LAST:event_btnAtualizarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -482,7 +499,6 @@ public class Cadastro extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnApagar;
-    private javax.swing.JButton btnApagar1;
     private javax.swing.JButton btnAtualizar;
     private javax.swing.JButton btnCadastro;
     private javax.swing.JButton btnDespesas1;
@@ -490,6 +506,7 @@ public class Cadastro extends javax.swing.JFrame {
     private javax.swing.JButton btnGastos;
     private javax.swing.JButton btnRecebidos;
     private javax.swing.JButton btnSaldo;
+    private javax.swing.JButton btnSalvar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;

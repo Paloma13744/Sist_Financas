@@ -1,9 +1,7 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package view;
 
+import java.awt.List;
+import java.util.Arrays;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -54,8 +52,8 @@ public class Cadastro extends javax.swing.JFrame {
         lblSaldo = new javax.swing.JLabel();
         btnSaldo = new javax.swing.JButton();
         lblRecebidos = new javax.swing.JLabel();
-        btnDespesas1 = new javax.swing.JButton();
-        lblDespesas1 = new javax.swing.JLabel();
+        btnDespesas = new javax.swing.JButton();
+        lblDespesas = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Sistema de Controle Financeiro");
@@ -112,7 +110,7 @@ public class Cadastro extends javax.swing.JFrame {
         lblGanho.setBackground(new java.awt.Color(0, 204, 153));
 
         tfNome.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
-        tfNome.setText("Paloma nascimento");
+        tfNome.setText("Recebimento");
         tfNome.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 tfNomeActionPerformed(evt);
@@ -120,10 +118,15 @@ public class Cadastro extends javax.swing.JFrame {
         });
 
         tfClassificacao.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
-        tfClassificacao.setText("Despesas");
+        tfClassificacao.setText("Salário");
+        tfClassificacao.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tfClassificacaoActionPerformed(evt);
+            }
+        });
 
         tfValor.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
-        tfValor.setText("250");
+        tfValor.setText("1500");
         tfValor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 tfValorActionPerformed(evt);
@@ -323,19 +326,19 @@ public class Cadastro extends javax.swing.JFrame {
 
         lblRecebidos.setText("R$");
 
-        btnDespesas1.setBackground(new java.awt.Color(217, 232, 255));
-        btnDespesas1.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
-        btnDespesas1.setForeground(new java.awt.Color(0, 51, 153));
-        btnDespesas1.setText("Total de Despesas");
-        btnDespesas1.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        btnDespesas1.setBorderPainted(false);
-        btnDespesas1.addActionListener(new java.awt.event.ActionListener() {
+        btnDespesas.setBackground(new java.awt.Color(217, 232, 255));
+        btnDespesas.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
+        btnDespesas.setForeground(new java.awt.Color(0, 51, 153));
+        btnDespesas.setText("Total de Despesas");
+        btnDespesas.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btnDespesas.setBorderPainted(false);
+        btnDespesas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnDespesas1ActionPerformed(evt);
+                btnDespesasActionPerformed(evt);
             }
         });
 
-        lblDespesas1.setText("R$");
+        lblDespesas.setText("R$");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -353,8 +356,8 @@ public class Cadastro extends javax.swing.JFrame {
                     .addComponent(lblRecebidos, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnDespesas1, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblDespesas1, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnDespesas, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblDespesas, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(131, 131, 131)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnSaldo, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -372,12 +375,12 @@ public class Cadastro extends javax.swing.JFrame {
                     .addComponent(btnRecebidos, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(btnSaldo, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(btnDespesas1, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(btnDespesas, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(lblRecebidos, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(lblDespesas1, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(lblDespesas, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(lblSaldo, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(9, 9, 9))
         );
@@ -415,7 +418,7 @@ public class Cadastro extends javax.swing.JFrame {
 
         if (selectedRow != -1) {
             DefaultTableModel tbProdutos = (DefaultTableModel) tbprodutos.getModel();
-            tbProdutos.removeRow(selectedRow);  // Remove a linha selecionada
+            tbProdutos.removeRow(selectedRow);
         } else {
             JOptionPane.showMessageDialog(null, "Nenhuma linha selecionada para remover.");
         }
@@ -440,16 +443,141 @@ public class Cadastro extends javax.swing.JFrame {
     }//GEN-LAST:event_btnSalvarActionPerformed
 
     private void btnRecebidosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRecebidosActionPerformed
-        // TODO add your handling code here:
+        DefaultTableModel tbProdutos = (DefaultTableModel) tbprodutos.getModel();
+        double totalRecebidos = 0.0;
+
+        String[] categoriasRecebidos = {
+            "Salário",
+            "Renda extra",
+            "Mesada",
+            "Frelancer"
+
+        };
+
+        for (int i = 0; i < tbProdutos.getRowCount(); i++) {
+            String classificacao = (String) tbProdutos.getValueAt(i, 1); // Coluna 1: Classificação
+            String valorStr = (String) tbProdutos.getValueAt(i, 2); // Coluna 2: Valor
+
+            for (String categoria : categoriasRecebidos) {
+                if (classificacao.equalsIgnoreCase(categoria)) {
+                    try {
+                        double valor = Double.parseDouble(valorStr);
+                        totalRecebidos += valor;
+                    } catch (NumberFormatException e) {
+                        System.out.println("Erro ao converter valor: " + valorStr);
+                    }
+                    break;
+                }
+            }
+        }
+
+        lblRecebidos.setText(" R$ " + String.format("%.2f", totalRecebidos));
+
+
     }//GEN-LAST:event_btnRecebidosActionPerformed
 
     private void btnSaldoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaldoActionPerformed
-        // TODO add your handling code here:
+      
+        double totalRecebidos = 0.0;
+        double totalDespesas = 0.0;
+
+   
+        String[] categoriasRecebidos = {
+            "Salário",
+            "Renda extra",
+            "Mesada",
+            "Freelancer"
+        };
+
+        DefaultTableModel tbProdutos = (DefaultTableModel) tbprodutos.getModel();
+        for (int i = 0; i < tbProdutos.getRowCount(); i++) {
+            String classificacao = (String) tbProdutos.getValueAt(i, 1); // Coluna 1: Classificação
+            String valorStr = (String) tbProdutos.getValueAt(i, 2); // Coluna 2: Valor
+
+            for (String categoria : categoriasRecebidos) {
+                if (classificacao.equalsIgnoreCase(categoria)) {
+                    try {
+                        double valor = Double.parseDouble(valorStr);
+                        totalRecebidos += valor;
+                    } catch (NumberFormatException e) {
+                        System.out.println("Erro ao converter valor: " + valorStr);
+                    }
+                    break;
+                }
+            }
+        }
+
+        // Calcular totalDespesas
+        String[] categoriasDespesas = {
+            "Alimentação",
+            "Automóvel",
+            "Saúde",
+            "Bem estar",
+            "Investimento",
+            "Outros",
+            "Compras",
+            "Casa"
+        };
+
+        for (int i = 0; i < tbProdutos.getRowCount(); i++) {
+            String classificacao = (String) tbProdutos.getValueAt(i, 1); // Coluna 1: Classificação
+            String valorStr = (String) tbProdutos.getValueAt(i, 2); // Coluna 2: Valor
+
+            for (String categoria : categoriasDespesas) {
+                if (classificacao.equalsIgnoreCase(categoria)) {
+                    try {
+                        double valor = Double.parseDouble(valorStr);
+                        totalDespesas += valor;
+                    } catch (NumberFormatException e) {
+                        System.out.println("Erro ao converter valor: " + valorStr);
+                    }
+                    break;
+                }
+            }
+        }
+
+        double saldoDisponivel = totalRecebidos - totalDespesas;
+
+        lblSaldo.setText("R$ " + String.format("%.2f", saldoDisponivel));
     }//GEN-LAST:event_btnSaldoActionPerformed
 
-    private void btnDespesas1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDespesas1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnDespesas1ActionPerformed
+    private void btnDespesasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDespesasActionPerformed
+
+        DefaultTableModel tbProdutos = (DefaultTableModel) tbprodutos.getModel();
+        double totalDespesas = 0.0;
+
+        String[] categoriasDespesas = {
+            "Alimentação",
+            "Automóvel",
+            "Saúde",
+            "Bem estar",
+            "Investimento",
+            "Outros",
+            "Compras",
+            "Casa"
+        };
+
+        for (int i = 0; i < tbProdutos.getRowCount(); i++) {
+            String classificacao = (String) tbProdutos.getValueAt(i, 1); // Coluna 1: Classificação
+            String valorStr = (String) tbProdutos.getValueAt(i, 2); // Coluna 2: Valor
+
+            for (String categoria : categoriasDespesas) {
+                if (classificacao.equalsIgnoreCase(categoria)) {
+                    try {
+                        double valor = Double.parseDouble(valorStr);
+                        totalDespesas += valor;
+                    } catch (NumberFormatException e) {
+                        System.out.println("Erro ao converter valor: " + valorStr);
+                    }
+                    break;
+                }
+            }
+        }
+
+        lblDespesas.setText(" R$ " + String.format("%.2f", totalDespesas));
+
+
+    }//GEN-LAST:event_btnDespesasActionPerformed
 
     private void btnAtualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAtualizarActionPerformed
         if (tbprodutos.getSelectedRow() != -1) {
@@ -461,6 +589,10 @@ public class Cadastro extends javax.swing.JFrame {
 
         }
     }//GEN-LAST:event_btnAtualizarActionPerformed
+
+    private void tfClassificacaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfClassificacaoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tfClassificacaoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -501,7 +633,7 @@ public class Cadastro extends javax.swing.JFrame {
     private javax.swing.JButton btnApagar;
     private javax.swing.JButton btnAtualizar;
     private javax.swing.JButton btnCadastro;
-    private javax.swing.JButton btnDespesas1;
+    private javax.swing.JButton btnDespesas;
     private javax.swing.JButton btnGanho;
     private javax.swing.JButton btnGastos;
     private javax.swing.JButton btnRecebidos;
@@ -513,7 +645,7 @@ public class Cadastro extends javax.swing.JFrame {
     private javax.swing.JLabel lblClassificacao;
     private javax.swing.JLabel lblData1;
     private javax.swing.JLabel lblDataEntrada;
-    private javax.swing.JLabel lblDespesas1;
+    private javax.swing.JLabel lblDespesas;
     private javax.swing.JLabel lblGanho;
     private javax.swing.JLabel lblNome;
     private javax.swing.JLabel lblRecebidos;

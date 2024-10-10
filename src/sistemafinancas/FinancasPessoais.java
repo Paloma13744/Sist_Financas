@@ -23,8 +23,7 @@ public class FinancasPessoais {
     }
 
        
-    
-    public String getNome() {
+        public String getNome() {
         return nome;
     }
 

@@ -1,9 +1,16 @@
 package view;
 
+import com.sun.jdi.connect.spi.Connection;
 import java.awt.List;
 import java.util.Arrays;
+import java.sql.SQLException;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import DAO.DadosDAO;
+import bancoDados.Conexao;
+import java.sql.SQLException;
+import java.sql.PreparedStatement;
+import bancoDados.Conexao;
 
 /**
  *
@@ -544,6 +551,7 @@ public class Cadastro extends javax.swing.JFrame {
 
         // Adicionando a nova linha à tabela
         tbProdutos.addRow(dados);
+
     }//GEN-LAST:event_btnCadastroActionPerformed
 
     private void tfNomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfNomeActionPerformed

@@ -1,4 +1,3 @@
-
 package sistemafinancas;
 
 import java.util.Date;
@@ -7,14 +6,15 @@ import java.util.Date;
  *
  * @author paloma
  */
-public class FinancasPessoais {
+public class Dados {
+
     private String nome;
-    private  String classificacao ;
+    private String classificacao;
     private double valor;
     private Date data;
     private Date dataCadastro;
 
-    public FinancasPessoais(String nome, String classificacao, double valor, Date data, Date dataCadastro) {
+    public Dados(String nome, String classificacao, double valor, Date data, Date dataCadastro) {
         this.nome = nome;
         this.classificacao = classificacao;
         this.valor = valor;
@@ -22,8 +22,7 @@ public class FinancasPessoais {
         this.dataCadastro = dataCadastro;
     }
 
-       
-        public String getNome() {
+    public String getNome() {
         return nome;
     }
 
@@ -62,9 +61,5 @@ public class FinancasPessoais {
     public void setDataCadastro(Date dataCadastro) {
         this.dataCadastro = dataCadastro;
     }
-    
-    
-    
-    
-    
+
 }

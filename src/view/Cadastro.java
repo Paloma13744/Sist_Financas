@@ -816,12 +816,67 @@ public class Cadastro extends javax.swing.JFrame {
 
     private void btnAtualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAtualizarActionPerformed
         if (tbprodutos.getSelectedRow() != -1) {
-            tbprodutos.setValueAt(tfNome.getText(), tbprodutos.getSelectedRow(), 0);
-            tbprodutos.setValueAt(tfClassificacao.getText(), tbprodutos.getSelectedRow(), 1);
-            tbprodutos.setValueAt(tfValor.getText(), tbprodutos.getSelectedRow(), 2);
-            tbprodutos.setValueAt(tfData.getText(), tbprodutos.getSelectedRow(), 3);
-            tbprodutos.setValueAt(tfDataCadastro.getText(), tbprodutos.getSelectedRow(), 4);
+            int selectedRow = tbprodutos.getSelectedRow();
 
+            String nome = tfNome.getText().trim();
+            String classificacao = tfClassificacao.getText().trim();
+            String valorText = tfValor.getText().trim();
+            String dataText = tfData.getText().trim();
+            String dataCadastroText = tfDataCadastro.getText().trim();
+
+            // Verifica se todos os campos estão preenchidos
+            if (nome.isEmpty() || classificacao.isEmpty() || valorText.isEmpty() || dataText.isEmpty() || dataCadastroText.isEmpty()) {
+                JOptionPane.showMessageDialog(this, "Por favor, preencha todos os campos!", "Erro", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+
+            try {
+            
+                double valor = Double.parseDouble(valorText);
+                DateTimeFormatter formato = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+                LocalDate data = LocalDate.parse(dataText, formato);
+                LocalDate dataCadastro = LocalDate.parse(dataCadastroText, formato);
+
+                // Cria um objeto Dados e preenche os atributos
+                Dados dados = new Dados();
+                dados.setNome(nome);
+                dados.setClassificacao(classificacao);
+                dados.setValor(valor);
+                dados.setData(data);
+                dados.setDataCadastro(dataCadastro);
+
+        
+                int id = (int) tbprodutos.getValueAt(selectedRow, 0);
+                dados.setId(id);
+
+                // Atualiza o banco de dados
+                Conexao conexao = new Conexao();
+                DadosDAO dadosDAO = new DadosDAO(conexao);
+
+                if (conexao.getConexao() != null) {
+                    dadosDAO.atualizar(dados);
+                    System.out.println("Dados atualizados com sucesso!");
+
+                    // Atualiza a tabela com os novos valores
+                    tbprodutos.setValueAt(nome, selectedRow, 1);
+                    tbprodutos.setValueAt(classificacao, selectedRow, 2);
+                    tbprodutos.setValueAt(valorText, selectedRow, 3);
+                    tbprodutos.setValueAt(data.toString(), selectedRow, 4);
+                    tbprodutos.setValueAt(dataCadastro.toString(), selectedRow, 5);
+
+                } else {
+                    JOptionPane.showMessageDialog(this, "Falha na conexão com o banco de dados.", "Erro", JOptionPane.ERROR_MESSAGE);
+                }
+
+            } catch (DateTimeParseException e) {
+                JOptionPane.showMessageDialog(this, "Erro ao converter a data: " + e.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
+            } catch (NumberFormatException e) {
+                JOptionPane.showMessageDialog(this, "Valor inválido: " + e.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
+            } catch (RuntimeException e) {
+                JOptionPane.showMessageDialog(this, "Erro ao atualizar dados: " + e.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
+            }
+        } else {
+            JOptionPane.showMessageDialog(this, "Selecione um registro para atualizar.", "Aviso", JOptionPane.WARNING_MESSAGE);
         }
     }//GEN-LAST:event_btnAtualizarActionPerformed
 

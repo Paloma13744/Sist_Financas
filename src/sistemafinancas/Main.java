@@ -10,7 +10,6 @@ public class Main {
         Conexao c = new Conexao();
         Connection conexao = null;
 
-        // Não é necessário fazer casting, pois o método já retorna Connection
         conexao = c.getConexao();
         if (conexao != null) {
             System.out.println("Conectado com sucesso!");

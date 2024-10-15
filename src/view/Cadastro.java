@@ -164,7 +164,7 @@ public class Cadastro extends javax.swing.JFrame {
         });
 
         tfData.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
-        tfData.setText("09/10/2024");
+        tfData.setText("15-10-2024");
 
         btnGastos.setBackground(new java.awt.Color(204, 51, 0));
         btnGastos.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
@@ -174,7 +174,12 @@ public class Cadastro extends javax.swing.JFrame {
         btnGastos.setBorderPainted(false);
 
         tfDataCadastro.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
-        tfDataCadastro.setText("09/10/2024");
+        tfDataCadastro.setText("15-10-2024");
+        tfDataCadastro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tfDataCadastroActionPerformed(evt);
+            }
+        });
 
         lblData1.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         lblData1.setText("Cadastro:");
@@ -236,8 +241,7 @@ public class Cadastro extends javax.swing.JFrame {
                                 .addComponent(btnSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(153, 153, 153)
-                                .addComponent(jLabel1)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addComponent(jLabel1))))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(lblGanho)
@@ -545,69 +549,63 @@ public class Cadastro extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCadastroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastroActionPerformed
-       
-         Dados dados = new Dados();
 
-    // Obtém os valores dos campos de texto
-    String nome = tfNome.getText().trim();
-    String classificacao = tfClassificacao.getText().trim();
-    String valorText = tfValor.getText().trim();
-    
-    // Verifica se os campos obrigatórios estão preenchidos
-    if (nome.isEmpty() || classificacao.isEmpty() || valorText.isEmpty() || tfData.getText().trim().isEmpty() || tfDataCadastro.getText().trim().isEmpty()) {
-        JOptionPane.showMessageDialog(this, "Por favor, preencha todos os campos!", "Erro", JOptionPane.ERROR_MESSAGE);
-        return; // Sai do método se houver campos vazios
-    }
+        Dados dados = new Dados();
 
-    dados.setNome(nome);
-    dados.setClassificacao(classificacao);
-    
-    try {
-        // Converte o valor para double
-        double valor = Double.parseDouble(valorText);
-        dados.setValor(valor);
-        
-        // Formata e converte as datas
-        DateTimeFormatter formato = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-        LocalDate data = LocalDate.parse(tfData.getText(), formato);
-        LocalDate dataCadastro = LocalDate.parse(tfDataCadastro.getText(), formato);
-        
-        dados.setData(data); // Assumindo que setData() aceite LocalDate
-        dados.setDataCadastro(dataCadastro); // Assumindo que setDataCadastro() aceite LocalDate
+        String nome = tfNome.getText().trim();
+        String classificacao = tfClassificacao.getText().trim();
+        String valorText = tfValor.getText().trim();
 
-        // Insere os dados no banco usando o DAO
-        Conexao conexao = new Conexao();
-        DadosDAO dadosDAO = new DadosDAO(conexao);
-        
-        // Verifica se a conexão foi bem-sucedida
-        if (conexao.getConexao() != null) {
-            dadosDAO.inserir(dados);
-            System.out.println("Dados inseridos com sucesso!");
-
-            // Adiciona a nova linha à tabela do JTable
-            DefaultTableModel tbProdutos = (DefaultTableModel) tbprodutos.getModel();
-            Object[] novaLinha = {
-                dados.getNome(),
-                dados.getClassificacao(),
-                dados.getValor(),
-                dados.getData().toString(), // Se precisar formatar a data, use .format()
-                dados.getDataCadastro().toString() // Se precisar formatar a data, use .format()
-            };
-            tbProdutos.addRow(novaLinha);
-        } else {
-            JOptionPane.showMessageDialog(this, "Falha na conexão com o banco de dados.", "Erro", JOptionPane.ERROR_MESSAGE);
+        if (nome.isEmpty() || classificacao.isEmpty() || valorText.isEmpty() || tfData.getText().trim().isEmpty() || tfDataCadastro.getText().trim().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Por favor, preencha todos os campos!", "Erro", JOptionPane.ERROR_MESSAGE);
+            return;
         }
 
-    } catch (DateTimeParseException e) {
-        JOptionPane.showMessageDialog(this, "Erro ao converter a data: " + e.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
-    } catch (NumberFormatException e) {
-        JOptionPane.showMessageDialog(this, "Valor inválido: " + e.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
-    } catch (RuntimeException e) {
-        JOptionPane.showMessageDialog(this, "Erro ao inserir dados: " + e.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
-    }
+        dados.setNome(nome);
+        dados.setClassificacao(classificacao);
 
-        
-        
+        try {
+            double valor = Double.parseDouble(valorText);
+            dados.setValor(valor);
+
+            DateTimeFormatter formato = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+            LocalDate data = LocalDate.parse(tfData.getText(), formato);
+            LocalDate dataCadastro = LocalDate.parse(tfDataCadastro.getText(), formato);
+
+            dados.setData(data);
+            dados.setDataCadastro(dataCadastro);
+
+            // Insere os dados no banco usando o DAO
+            Conexao conexao = new Conexao();
+            DadosDAO dadosDAO = new DadosDAO(conexao);
+
+            // Verifica se a conexão foi bem-sucedida
+            if (conexao.getConexao() != null) {
+                dadosDAO.inserir(dados);
+                System.out.println("Dados inseridos com sucesso!");
+
+                DefaultTableModel tbProdutos = (DefaultTableModel) tbprodutos.getModel();
+                Object[] novaLinha = {
+                    dados.getNome(),
+                    dados.getClassificacao(),
+                    dados.getValor(),
+                    dados.getData().toString(),
+                    dados.getDataCadastro().toString()
+                };
+                tbProdutos.addRow(novaLinha);
+            } else {
+                JOptionPane.showMessageDialog(this, "Falha na conexão com o banco de dados.", "Erro", JOptionPane.ERROR_MESSAGE);
+            }
+
+        } catch (DateTimeParseException e) {
+            JOptionPane.showMessageDialog(this, "Erro ao converter a data: " + e.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(this, "Valor inválido: " + e.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
+        } catch (RuntimeException e) {
+            JOptionPane.showMessageDialog(this, "Erro ao inserir dados: " + e.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
+        }
+
+
     }//GEN-LAST:event_btnCadastroActionPerformed
 
     private void tfNomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfNomeActionPerformed
@@ -619,16 +617,36 @@ public class Cadastro extends javax.swing.JFrame {
     }//GEN-LAST:event_tfValorActionPerformed
 
     private void btnApagarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnApagarActionPerformed
+        Conexao conexao = new Conexao();
+        DadosDAO dadosDAO = new DadosDAO(conexao);
         int selectedRow = tbprodutos.getSelectedRow();
 
         if (selectedRow != -1) {
-            DefaultTableModel tbProdutos = (DefaultTableModel) tbprodutos.getModel();
-            tbProdutos.removeRow(selectedRow);
+            // Supondo que o nome do produto está na primeira coluna da tabela
+            String nomeProduto = (String) tbprodutos.getValueAt(selectedRow, 0);
+
+            // Criar um objeto Dados com o nome do produto
+            Dados dadosParaExcluir = new Dados();
+            dadosParaExcluir.setNome(nomeProduto); // Altere aqui para definir o nome
+
+            // Chamar o método apagar no DAO
+            try {
+                // Usando a instância do DAO para excluir o produto do banco de dados
+                dadosDAO.apagar(dadosParaExcluir);
+
+                // Remover a linha da tabela
+                DefaultTableModel tbProdutos = (DefaultTableModel) tbprodutos.getModel();
+                tbProdutos.removeRow(selectedRow);
+
+                JOptionPane.showMessageDialog(null, "Produto excluído com sucesso!");
+            } catch (RuntimeException e) {
+                JOptionPane.showMessageDialog(null, "Erro ao excluir produto: " + e.getMessage());
+            } finally {
+                conexao.fecharConexao(); // Verifique se este método existe na sua classe Conexao
+            }
         } else {
             JOptionPane.showMessageDialog(null, "Nenhuma linha selecionada para remover.");
         }
-
-
     }//GEN-LAST:event_btnApagarActionPerformed
 
     private void tbprodutosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbprodutosMouseClicked
@@ -644,7 +662,49 @@ public class Cadastro extends javax.swing.JFrame {
     }//GEN-LAST:event_tbprodutosMouseClicked
 
     private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
+        int rowCount = tbprodutos.getRowCount(); // Obtém o número de linhas da tabela
 
+        if (rowCount == 0) { // Verifica se a tabela está vazia
+            JOptionPane.showMessageDialog(this, "Nenhum dado para salvar!", "Aviso", JOptionPane.WARNING_MESSAGE);
+            return; // Sai do método se não houver dados para salvar
+        }
+
+        // Conexão com o banco de dados
+        Conexao conexao = new Conexao();
+        DadosDAO dadosDAO = new DadosDAO(conexao);
+
+        // Verifica se a conexão foi bem-sucedida
+        if (conexao.getConexao() != null) {
+            try {
+                // Percorre todas as linhas da tabela para salvar os dados
+                for (int i = 0; i < rowCount; i++) {
+                    Dados dados = new Dados();
+
+                    // Obtém os valores das colunas da linha atual
+                    String nome = (String) tbprodutos.getValueAt(i, 0);
+                    String classificacao = (String) tbprodutos.getValueAt(i, 1);
+                    double valor = (double) tbprodutos.getValueAt(i, 2);
+                    LocalDate data = LocalDate.parse((String) tbprodutos.getValueAt(i, 3));
+                    LocalDate dataCadastro = LocalDate.parse((String) tbprodutos.getValueAt(i, 4));
+
+                    // Define os valores no objeto Dados
+                    dados.setNome(nome);
+                    dados.setClassificacao(classificacao);
+                    dados.setValor(valor);
+                    dados.setData(data);
+                    dados.setDataCadastro(dataCadastro);
+
+                    // Insere os dados no banco usando o DAO
+                    dadosDAO.inserir(dados);
+                }
+
+                JOptionPane.showMessageDialog(this, "Dados salvos com sucesso!");
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(this, "Erro ao salvar os dados: " + e.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
+            }
+        } else {
+            JOptionPane.showMessageDialog(this, "Falha na conexão com o banco de dados.", "Erro", JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_btnSalvarActionPerformed
 
     private void btnTiposActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTiposActionPerformed
@@ -800,6 +860,10 @@ public class Cadastro extends javax.swing.JFrame {
 
         lblRecebidos.setText(" R$ " + String.format("%.2f", totalRecebidos));        // TODO add your handling code here:
     }//GEN-LAST:event_btnRecebidosActionPerformed
+
+    private void tfDataCadastroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfDataCadastroActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tfDataCadastroActionPerformed
 
     /**
      * @param args the command line arguments

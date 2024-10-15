@@ -21,18 +21,16 @@ public class DadosDAO implements interfaceDAO<Dados> {
         this.conexao = conexao;
     }
 
-
     @Override
     public void inserir(Dados d) {
         String sql = "INSERT INTO DADOS (NOME, CLASSIFICACAO, VALOR, DATA, DATACADASTRO) VALUES (?, ?, ?, ?, ?)";
 
-        try (Connection conn = this.conexao.getConexao();
-             PreparedStatement stmt = conn.prepareStatement(sql)) {
+        try (Connection conn = this.conexao.getConexao(); PreparedStatement stmt = conn.prepareStatement(sql)) {
 
             stmt.setString(1, d.getNome());
             stmt.setString(2, d.getClassificacao());
             stmt.setDouble(3, d.getValor());
-            stmt.setDate(4, java.sql.Date.valueOf(d.getData().toString())); 
+            stmt.setDate(4, java.sql.Date.valueOf(d.getData().toString()));
             stmt.setDate(5, java.sql.Date.valueOf(d.getDataCadastro().toString()));
 
             stmt.executeUpdate();
@@ -46,15 +44,14 @@ public class DadosDAO implements interfaceDAO<Dados> {
     public void atualizar(Dados d) {
         String sql = "UPDATE DADOS SET NOME = ?, CLASSIFICACAO = ?, VALOR = ?, DATA = ?, DATACADASTRO = ? WHERE ID = ?";
 
-        try (Connection conn = this.conexao.getConexao();
-             PreparedStatement stmt = conn.prepareStatement(sql)) {
+        try (Connection conn = this.conexao.getConexao(); PreparedStatement stmt = conn.prepareStatement(sql)) {
 
             stmt.setString(1, d.getNome());
             stmt.setString(2, d.getClassificacao());
             stmt.setDouble(3, d.getValor());
             stmt.setDate(4, java.sql.Date.valueOf(d.getData().toString()));
-            stmt.setDate(5, java.sql.Date.valueOf(d.getDataCadastro().toString())); 
-            stmt.setInt(6, d.getId()); 
+            stmt.setDate(5, java.sql.Date.valueOf(d.getDataCadastro().toString()));
+            stmt.setInt(6, d.getId());
 
             stmt.executeUpdate();
             System.out.println("Atualização realizada com sucesso!");
@@ -65,15 +62,19 @@ public class DadosDAO implements interfaceDAO<Dados> {
 
     @Override
     public void apagar(Dados d) {
-        String sql = "DELETE FROM DADOS WHERE ID = ?";
+        String sql = "DELETE FROM DADOS WHERE NOME = ?"; 
 
-        try (Connection conn = this.conexao.getConexao();
-             PreparedStatement stmt = conn.prepareStatement(sql)) {
+        try (Connection conn = this.conexao.getConexao(); PreparedStatement stmt = conn.prepareStatement(sql)) {
 
-            stmt.setInt(1, d.getId()); 
+            stmt.setString(1, d.getNome()); 
 
-            stmt.executeUpdate();
-            System.out.println("Exclusão realizada com sucesso!");
+            int rowsAffected = stmt.executeUpdate(); 
+
+            if (rowsAffected > 0) {
+                System.out.println("Exclusão realizada com sucesso!");
+            } else {
+                System.out.println("Nenhum produto encontrado com o nome: " + d.getNome());
+            }
         } catch (SQLException ex) {
             throw new RuntimeException("Erro ao apagar dados: " + ex.getMessage(), ex);
         }
@@ -84,19 +85,17 @@ public class DadosDAO implements interfaceDAO<Dados> {
         ArrayList<Dados> listar = new ArrayList<>();
         String sql = "SELECT * FROM DADOS ORDER BY ID";
 
-        try (Connection conn = this.conexao.getConexao();
-             PreparedStatement stmt = conn.prepareStatement(sql);
-             ResultSet resultado = stmt.executeQuery()) {
+        try (Connection conn = this.conexao.getConexao(); PreparedStatement stmt = conn.prepareStatement(sql); ResultSet resultado = stmt.executeQuery()) {
 
             while (resultado.next()) {
                 Dados dados = new Dados();
 
-                dados.setId(resultado.getInt("ID")); 
+                dados.setId(resultado.getInt("ID"));
                 dados.setNome(resultado.getString("NOME"));
                 dados.setClassificacao(resultado.getString("CLASSIFICACAO"));
                 dados.setValor(resultado.getDouble("VALOR"));
-                dados.setData(resultado.getDate("DATA").toLocalDate()); 
-                dados.setDataCadastro(resultado.getDate("DATACADASTRO").toLocalDate()); 
+                dados.setData(resultado.getDate("DATA").toLocalDate());
+                dados.setDataCadastro(resultado.getDate("DATACADASTRO").toLocalDate());
 
                 listar.add(dados);
             }
@@ -109,5 +108,3 @@ public class DadosDAO implements interfaceDAO<Dados> {
     }
 
 }
-
-

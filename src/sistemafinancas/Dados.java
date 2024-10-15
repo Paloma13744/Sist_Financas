@@ -1,5 +1,6 @@
 package sistemafinancas;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 /**
@@ -8,18 +9,33 @@ import java.util.Date;
  */
 public class Dados {
 
+    private int id;
     private String nome;
     private String classificacao;
     private double valor;
-    private Date data;
-    private Date dataCadastro;
+    private LocalDate data;
+    private LocalDate dataCadastro;
 
-    public Dados(String nome, String classificacao, double valor, Date data, Date dataCadastro) {
+    public Dados(int id, String nome, String classificacao, double valor, LocalDate data, LocalDate dataCadastro) {
+        this.id = id;
         this.nome = nome;
         this.classificacao = classificacao;
         this.valor = valor;
         this.data = data;
         this.dataCadastro = dataCadastro;
+    }
+
+  
+    public Dados() {
+
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getNome() {
@@ -46,20 +62,22 @@ public class Dados {
         this.valor = valor;
     }
 
-    public Date getData() {
+    public LocalDate getData() {
         return data;
     }
 
-    public void setData(Date data) {
+    public void setData(LocalDate data) {
         this.data = data;
     }
 
-    public Date getDataCadastro() {
+    public LocalDate getDataCadastro() {
         return dataCadastro;
     }
 
-    public void setDataCadastro(Date dataCadastro) {
+    public void setDataCadastro(LocalDate dataCadastro) {
         this.dataCadastro = dataCadastro;
     }
+
+ 
 
 }

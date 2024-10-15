@@ -1,5 +1,4 @@
 // Classe de conexão
-
 package bancoDados;
 
 import DAO.interfaceDAO;
@@ -7,38 +6,33 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.ArrayList;
-
+import javax.swing.JOptionPane;
 
 public class Conexao {
 
-    private String servidor;
-    private String banco;
-    private String usuario;
-    private String senha;
     private Connection conexao;
 
-    public Conexao(String servidor, String banco, String usuario, String senha) {
-        this.servidor = "127.0.0.1";
-        this.banco = "sistemafinanceiro";
-        this.usuario = "root";
-        this.senha = "";
+
+    public Connection getConexao() {
+        if (conexao == null) {
+            try {
+                conexao = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/sistemafinanceiro", "root","101100");
+            } catch (SQLException e) {
+                JOptionPane.showMessageDialog(null, "Erro de conexão: " + e.getMessage());
+            }
+        }
+        return conexao;
     }
 
-    public boolean conectar() {
-        try {
-            this.conexao = DriverManager.getConnection("jdbc:mysql://" + this.servidor + "/", this.banco, this.senha);
-            return true;
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
+    public void fecharConexao() {
+        if (conexao != null) {
+            try {
+                conexao.close();
+                conexao = null; // Limpa a referência
+            } catch (SQLException e) {
+                JOptionPane.showMessageDialog(null, "Erro ao fechar conexão: " + e.getMessage());
+            }
         }
     }
 
-    public Connection getConexao() {
-        return conexao;
-    }
-    
-
-   
-
 }
-

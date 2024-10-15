@@ -11,6 +11,13 @@ import bancoDados.Conexao;
 import java.sql.SQLException;
 import java.sql.PreparedStatement;
 import bancoDados.Conexao;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import sistemafinancas.Dados;
+import java.text.ParseException;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 
 /**
  *
@@ -538,20 +545,69 @@ public class Cadastro extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCadastroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastroActionPerformed
-        DefaultTableModel tbProdutos = (DefaultTableModel) tbprodutos.getModel();
+       
+         Dados dados = new Dados();
 
-        // Criando um array de objetos com os dados que você deseja adicionar à tabela
-        Object[] dados = {
-            tfNome.getText(),
-            tfClassificacao.getText(),
-            tfValor.getText(),
-            tfData.getText(),
-            tfDataCadastro.getText()
-        };
+    // Obtém os valores dos campos de texto
+    String nome = tfNome.getText().trim();
+    String classificacao = tfClassificacao.getText().trim();
+    String valorText = tfValor.getText().trim();
+    
+    // Verifica se os campos obrigatórios estão preenchidos
+    if (nome.isEmpty() || classificacao.isEmpty() || valorText.isEmpty() || tfData.getText().trim().isEmpty() || tfDataCadastro.getText().trim().isEmpty()) {
+        JOptionPane.showMessageDialog(this, "Por favor, preencha todos os campos!", "Erro", JOptionPane.ERROR_MESSAGE);
+        return; // Sai do método se houver campos vazios
+    }
 
-        // Adicionando a nova linha à tabela
-        tbProdutos.addRow(dados);
+    dados.setNome(nome);
+    dados.setClassificacao(classificacao);
+    
+    try {
+        // Converte o valor para double
+        double valor = Double.parseDouble(valorText);
+        dados.setValor(valor);
+        
+        // Formata e converte as datas
+        DateTimeFormatter formato = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        LocalDate data = LocalDate.parse(tfData.getText(), formato);
+        LocalDate dataCadastro = LocalDate.parse(tfDataCadastro.getText(), formato);
+        
+        dados.setData(data); // Assumindo que setData() aceite LocalDate
+        dados.setDataCadastro(dataCadastro); // Assumindo que setDataCadastro() aceite LocalDate
 
+        // Insere os dados no banco usando o DAO
+        Conexao conexao = new Conexao();
+        DadosDAO dadosDAO = new DadosDAO(conexao);
+        
+        // Verifica se a conexão foi bem-sucedida
+        if (conexao.getConexao() != null) {
+            dadosDAO.inserir(dados);
+            System.out.println("Dados inseridos com sucesso!");
+
+            // Adiciona a nova linha à tabela do JTable
+            DefaultTableModel tbProdutos = (DefaultTableModel) tbprodutos.getModel();
+            Object[] novaLinha = {
+                dados.getNome(),
+                dados.getClassificacao(),
+                dados.getValor(),
+                dados.getData().toString(), // Se precisar formatar a data, use .format()
+                dados.getDataCadastro().toString() // Se precisar formatar a data, use .format()
+            };
+            tbProdutos.addRow(novaLinha);
+        } else {
+            JOptionPane.showMessageDialog(this, "Falha na conexão com o banco de dados.", "Erro", JOptionPane.ERROR_MESSAGE);
+        }
+
+    } catch (DateTimeParseException e) {
+        JOptionPane.showMessageDialog(this, "Erro ao converter a data: " + e.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
+    } catch (NumberFormatException e) {
+        JOptionPane.showMessageDialog(this, "Valor inválido: " + e.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
+    } catch (RuntimeException e) {
+        JOptionPane.showMessageDialog(this, "Erro ao inserir dados: " + e.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
+    }
+
+        
+        
     }//GEN-LAST:event_btnCadastroActionPerformed
 
     private void tfNomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfNomeActionPerformed

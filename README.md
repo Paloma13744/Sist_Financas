@@ -32,4 +32,4 @@ O projeto é composto pelas seguintes classes principais:
 
 1. **Clone o Repositório**:
    ```bash
-   git clone <URL_DO_REPOSITORIO>
+   git clone https://github.com/Paloma13744/Sist_Financas.git

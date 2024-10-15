@@ -2,7 +2,7 @@
 
 # Sistema de Cadastro com Swing
 
-![image](https://github.com/user-attachments/assets/b629019d-e880-469c-a621-2143409b283d)
+![image](https://github.com/user-attachments/assets/4ec71668-0c14-407a-97f3-399e062823d2)
 
 Este projeto é um sistema de cadastro desenvolvido em Java utilizando a biblioteca Swing para a interface gráfica. O sistema permite cadastrar, atualizar, apagar e salvar informações relacionadas a despesas e recebimentos pessoais.
 

@@ -518,19 +518,16 @@ public class Cadastro extends javax.swing.JFrame {
         int selectedRow = tbprodutos.getSelectedRow();
 
         if (selectedRow != -1) {
-            // Supondo que o nome do produto está na primeira coluna da tabela
             String nomeProduto = (String) tbprodutos.getValueAt(selectedRow, 0);
 
             // Criar um objeto Dados com o nome do produto
             Dados dadosParaExcluir = new Dados();
-            dadosParaExcluir.setNome(nomeProduto); // Altere aqui para definir o nome
+            dadosParaExcluir.setNome(nomeProduto); 
 
-            // Chamar o método apagar no DAO
             try {
-                // Usando a instância do DAO para excluir o produto do banco de dados
+               
                 dadosDAO.apagar(dadosParaExcluir);
 
-                // Remover a linha da tabela
                 DefaultTableModel tbProdutos = (DefaultTableModel) tbprodutos.getModel();
                 tbProdutos.removeRow(selectedRow);
 
@@ -538,7 +535,7 @@ public class Cadastro extends javax.swing.JFrame {
             } catch (RuntimeException e) {
                 JOptionPane.showMessageDialog(null, "Erro ao excluir produto: " + e.getMessage());
             } finally {
-                conexao.close();// Verifique se este método existe na sua classe Conexao
+                conexao.close();
             }
         } else {
             JOptionPane.showMessageDialog(null, "Nenhuma linha selecionada para remover.");
@@ -593,7 +590,7 @@ public class Cadastro extends javax.swing.JFrame {
                 if (valorObj instanceof Double) {
                     valor = (Double) valorObj; 
                 } else if (valorObj instanceof String) {
-                    valor = Double.parseDouble((String) valorObj); // Se for String, converta
+                    valor = Double.parseDouble((String) valorObj); 
                 } else {
                     continue; 
                 }
@@ -634,13 +631,12 @@ public class Cadastro extends javax.swing.JFrame {
             String classificacao = (String) tbProdutos.getValueAt(i, 1); // Coluna 1: Classificação
             Object valorObj = tbProdutos.getValueAt(i, 2); // Coluna 2: Valor
 
-            // Verifique se o valor é do tipo correto
             if (valorObj instanceof Number) {
                 double valor = ((Number) valorObj).doubleValue();
                 for (String categoria : categoriasDespesas) {
                     if (classificacao.equalsIgnoreCase(categoria)) {
                         totalDespesas += valor;
-                        break; // Se encontrar uma categoria, não precisa continuar verificando
+                        break;
                     }
                 }
             } else if (valorObj instanceof String) {
@@ -650,7 +646,7 @@ public class Cadastro extends javax.swing.JFrame {
                     for (String categoria : categoriasDespesas) {
                         if (classificacao.equalsIgnoreCase(categoria)) {
                             totalDespesas += valor;
-                            break; // Se encontrar uma categoria, não precisa continuar verificando
+                            break; 
                         }
                     }
                 } catch (NumberFormatException e) {
@@ -677,7 +673,7 @@ public class Cadastro extends javax.swing.JFrame {
             String classificacao = (String) tbProdutos.getValueAt(i, 1); // Coluna 1: Classificação
             Object valorObj = tbProdutos.getValueAt(i, 2); // Coluna 2: Valor
 
-            // Verifique se o valor é do tipo correto
+         
             if (valorObj instanceof Number) {
                 double valor = ((Number) valorObj).doubleValue();
                 for (String categoria : categoriasRecebidos) {
@@ -696,7 +692,7 @@ public class Cadastro extends javax.swing.JFrame {
     }//GEN-LAST:event_btnRecebidosActionPerformed
 
     private void tfDataCadastroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfDataCadastroActionPerformed
-        // TODO add your handling code here:
+     
     }//GEN-LAST:event_tfDataCadastroActionPerformed
 
     private void cbClassificacaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbClassificacaoActionPerformed

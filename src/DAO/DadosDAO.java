@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import sistemafinancas.Dados;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 /**
@@ -40,35 +41,49 @@ public class DadosDAO implements interfaceDAO<Dados> {
         }
     }
 
+    /*
     @Override
     public void atualizar(Dados d) {
         String sql = "UPDATE DADOS SET NOME = ?, CLASSIFICACAO = ?, VALOR = ?, DATA = ?, DATACADASTRO = ? WHERE ID = ?";
 
         try (Connection conn = this.conexao.getConexao(); PreparedStatement stmt = conn.prepareStatement(sql)) {
 
+            if (conn == null) {
+                throw new RuntimeException("Conexão com o banco de dados não foi estabelecida.");
+            }
+
             stmt.setString(1, d.getNome());
             stmt.setString(2, d.getClassificacao());
             stmt.setDouble(3, d.getValor());
-            stmt.setDate(4, java.sql.Date.valueOf(d.getData().toString()));
-            stmt.setDate(5, java.sql.Date.valueOf(d.getDataCadastro().toString()));
+            stmt.setDate(4, java.sql.Date.valueOf(d.getData()));
+            stmt.setDate(5, java.sql.Date.valueOf(d.getDataCadastro()));
             stmt.setInt(6, d.getId());
 
-            stmt.executeUpdate();
-            System.out.println("Atualização realizada com sucesso!");
+            int linhasAfetadas = stmt.executeUpdate();
+            if (linhasAfetadas > 0) {
+                System.out.println("Atualização realizada com sucesso!");
+            } else {
+                System.out.println("Nenhum registro foi atualizado.");
+            }
+
         } catch (SQLException ex) {
+            ex.printStackTrace();
             throw new RuntimeException("Erro ao atualizar dados: " + ex.getMessage(), ex);
         }
     }
 
+    
+    */
+
     @Override
     public void apagar(Dados d) {
-        String sql = "DELETE FROM DADOS WHERE NOME = ?"; 
+        String sql = "DELETE FROM DADOS WHERE NOME = ?";
 
         try (Connection conn = this.conexao.getConexao(); PreparedStatement stmt = conn.prepareStatement(sql)) {
 
-            stmt.setString(1, d.getNome()); 
+            stmt.setString(1, d.getNome());
 
-            int rowsAffected = stmt.executeUpdate(); 
+            int rowsAffected = stmt.executeUpdate();
 
             if (rowsAffected > 0) {
                 System.out.println("Exclusão realizada com sucesso!");
@@ -107,4 +122,24 @@ public class DadosDAO implements interfaceDAO<Dados> {
         return listar;
     }
 
+    public boolean existeRegistro(String nome, String classificacao, double valor, LocalDate data, LocalDate dataCadastro) {
+       String sql = "SELECT COUNT(*) FROM sua_tabela WHERE nome = ? AND classificacao = ? AND valor = ? AND data = ? AND dataCadastro = ?";
+        try (PreparedStatement stmt = conexao.getConexao().prepareStatement(sql)) {
+            stmt.setString(1, nome);
+            stmt.setString(2, classificacao);
+            stmt.setDouble(3, valor);
+            stmt.setDate(4, java.sql.Date.valueOf(data));
+            stmt.setDate(5, java.sql.Date.valueOf(dataCadastro));
+
+            ResultSet rs = stmt.executeQuery();
+            if (rs.next()) {
+                return rs.getInt(1) > 0; // Retorna true se houver registros
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+         
+        }
+        return false; // Retorna false se não houver registros
+    }
+    
 }

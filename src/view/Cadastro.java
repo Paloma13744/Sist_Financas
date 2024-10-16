@@ -18,6 +18,8 @@ import java.text.ParseException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
+import java.util.ArrayList;
+import javax.swing.JComboBox;
 
 /**
  *
@@ -30,6 +32,7 @@ public class Cadastro extends javax.swing.JFrame {
      */
     public Cadastro() {
         initComponents();
+        carregarDadosTabela();
     }
 
     /**
@@ -47,11 +50,9 @@ public class Cadastro extends javax.swing.JFrame {
         lblClassificacao = new javax.swing.JLabel();
         lblDataEntrada = new javax.swing.JLabel();
         btnCadastro = new javax.swing.JButton();
-        btnAtualizar = new javax.swing.JButton();
         btnApagar = new javax.swing.JButton();
         lblGanho = new javax.swing.JLabel();
         tfNome = new javax.swing.JTextField();
-        tfClassificacao = new javax.swing.JTextField();
         tfValor = new javax.swing.JTextField();
         tfData = new javax.swing.JTextField();
         btnGastos = new javax.swing.JButton();
@@ -60,51 +61,43 @@ public class Cadastro extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         btnSalvar = new javax.swing.JButton();
         btnGanho1 = new javax.swing.JButton();
+        cbClassificacao = new javax.swing.JComboBox<>();
+        btnSair = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tbprodutos = new javax.swing.JTable();
-        btnTipos = new javax.swing.JButton();
         lblSaldo = new javax.swing.JLabel();
         btnSaldo = new javax.swing.JButton();
         lblRecebidos = new javax.swing.JLabel();
         btnDespesas = new javax.swing.JButton();
         lblDespesas = new javax.swing.JLabel();
         btnRecebidos = new javax.swing.JButton();
-        jPanel2 = new javax.swing.JPanel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
-        jLabel9 = new javax.swing.JLabel();
-        jLabel10 = new javax.swing.JLabel();
-        jLabel11 = new javax.swing.JLabel();
-        jLabel12 = new javax.swing.JLabel();
-        jLabel13 = new javax.swing.JLabel();
-        jLabel14 = new javax.swing.JLabel();
-        jLabel15 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Sistema de Controle Financeiro");
         setBackground(new java.awt.Color(102, 102, 102));
 
         jPanel1.setBackground(new java.awt.Color(57, 158, 158));
+        jPanel1.setForeground(new java.awt.Color(255, 255, 255));
 
-        lblNome.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+        lblNome.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
+        lblNome.setForeground(new java.awt.Color(255, 255, 255));
         lblNome.setText("Nome:");
 
-        lblValor.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+        lblValor.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
+        lblValor.setForeground(new java.awt.Color(255, 255, 255));
         lblValor.setText("Valor:");
 
-        lblClassificacao.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+        lblClassificacao.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
+        lblClassificacao.setForeground(new java.awt.Color(255, 255, 255));
         lblClassificacao.setText("Classificação:");
 
         lblDataEntrada.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+        lblDataEntrada.setForeground(new java.awt.Color(255, 255, 255));
         lblDataEntrada.setText("Data Entrada:");
 
         btnCadastro.setBackground(new java.awt.Color(217, 232, 255));
         btnCadastro.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
+        btnCadastro.setForeground(new java.awt.Color(0, 51, 153));
         btnCadastro.setText("Cadastrar");
         btnCadastro.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         btnCadastro.setBorderPainted(false);
@@ -114,20 +107,9 @@ public class Cadastro extends javax.swing.JFrame {
             }
         });
 
-        btnAtualizar.setBackground(new java.awt.Color(217, 232, 255));
-        btnAtualizar.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
-        btnAtualizar.setForeground(new java.awt.Color(0, 51, 153));
-        btnAtualizar.setText("Atualizar");
-        btnAtualizar.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        btnAtualizar.setBorderPainted(false);
-        btnAtualizar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAtualizarActionPerformed(evt);
-            }
-        });
-
         btnApagar.setBackground(new java.awt.Color(217, 232, 255));
         btnApagar.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
+        btnApagar.setForeground(new java.awt.Color(0, 51, 153));
         btnApagar.setText("Apagar");
         btnApagar.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         btnApagar.setBorderPainted(false);
@@ -144,14 +126,6 @@ public class Cadastro extends javax.swing.JFrame {
         tfNome.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 tfNomeActionPerformed(evt);
-            }
-        });
-
-        tfClassificacao.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
-        tfClassificacao.setText("Salário");
-        tfClassificacao.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tfClassificacaoActionPerformed(evt);
             }
         });
 
@@ -182,6 +156,7 @@ public class Cadastro extends javax.swing.JFrame {
         });
 
         lblData1.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+        lblData1.setForeground(new java.awt.Color(255, 255, 255));
         lblData1.setText("Cadastro:");
 
         jLabel1.setFont(new java.awt.Font("Tw Cen MT", 1, 28)); // NOI18N
@@ -207,6 +182,26 @@ public class Cadastro extends javax.swing.JFrame {
         btnGanho1.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         btnGanho1.setBorderPainted(false);
 
+        cbClassificacao.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+        cbClassificacao.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Alimentação", "Automóvel", "Saúde", "Bem estar", "Investimento", "Outros", "Compras", "Casa", "Salário", "Renda extra", "Mesada", "Freelancer" }));
+        cbClassificacao.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbClassificacaoActionPerformed(evt);
+            }
+        });
+
+        btnSair.setBackground(new java.awt.Color(217, 232, 255));
+        btnSair.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
+        btnSair.setForeground(new java.awt.Color(0, 51, 153));
+        btnSair.setText("Sair");
+        btnSair.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btnSair.setBorderPainted(false);
+        btnSair.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSairActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -215,33 +210,34 @@ public class Cadastro extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(14, 14, 14)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(lblValor)
                                 .addGap(18, 18, 18)
                                 .addComponent(tfValor, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(lblClassificacao)
-                                .addGap(18, 18, 18)
-                                .addComponent(tfClassificacao, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(lblNome, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(tfNome)))
-                        .addGap(43, 43, 43)
+                                .addComponent(tfNome, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(lblClassificacao)
+                                .addGap(18, 18, 18)
+                                .addComponent(cbClassificacao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(92, 92, 92)
+                                .addGap(125, 125, 125)
                                 .addComponent(btnCadastro, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
-                                .addComponent(btnAtualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
                                 .addComponent(btnApagar, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(26, 26, 26)
-                                .addComponent(btnSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(153, 153, 153)
-                                .addComponent(jLabel1))))
+                                .addGap(18, 18, 18)
+                                .addComponent(btnSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(btnSair, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(97, 97, 97))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabel1)
+                                .addGap(137, 137, 137))))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(lblGanho)
@@ -269,7 +265,7 @@ public class Cadastro extends javax.swing.JFrame {
                 .addComponent(lblGanho)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap(26, Short.MAX_VALUE)
+                .addContainerGap(32, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -288,7 +284,7 @@ public class Cadastro extends javax.swing.JFrame {
                                 .addGap(18, 18, 18)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(lblClassificacao)
-                                    .addComponent(tfClassificacao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                    .addComponent(cbClassificacao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -301,14 +297,18 @@ public class Cadastro extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(btnApagar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnAtualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnCadastro, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(btnCadastro, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(btnSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(btnSair, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(41, 41, 41))))
         );
 
+        tbprodutos.setBackground(new java.awt.Color(57, 158, 158));
+        tbprodutos.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+        tbprodutos.setForeground(new java.awt.Color(255, 255, 255));
         tbprodutos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -332,18 +332,6 @@ public class Cadastro extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(tbprodutos);
 
-        btnTipos.setBackground(new java.awt.Color(217, 232, 255));
-        btnTipos.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
-        btnTipos.setForeground(new java.awt.Color(0, 51, 153));
-        btnTipos.setText("Tipos de Classificação:");
-        btnTipos.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        btnTipos.setBorderPainted(false);
-        btnTipos.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnTiposActionPerformed(evt);
-            }
-        });
-
         lblSaldo.setText("R$");
 
         btnSaldo.setBackground(new java.awt.Color(217, 232, 255));
@@ -352,6 +340,8 @@ public class Cadastro extends javax.swing.JFrame {
         btnSaldo.setText("Saldo disponível");
         btnSaldo.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         btnSaldo.setBorderPainted(false);
+        btnSaldo.setMaximumSize(new java.awt.Dimension(129, 22));
+        btnSaldo.setMinimumSize(new java.awt.Dimension(129, 22));
         btnSaldo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnSaldoActionPerformed(evt);
@@ -366,6 +356,9 @@ public class Cadastro extends javax.swing.JFrame {
         btnDespesas.setText("Total de Despesas");
         btnDespesas.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         btnDespesas.setBorderPainted(false);
+        btnDespesas.setMaximumSize(new java.awt.Dimension(129, 22));
+        btnDespesas.setMinimumSize(new java.awt.Dimension(129, 22));
+        btnDespesas.setPreferredSize(new java.awt.Dimension(129, 22));
         btnDespesas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnDespesasActionPerformed(evt);
@@ -386,162 +379,51 @@ public class Cadastro extends javax.swing.JFrame {
             }
         });
 
-        jPanel2.setBackground(new java.awt.Color(217, 232, 255));
-
-        jLabel2.setFont(new java.awt.Font("Verdana", 3, 12)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(0, 51, 153));
-        jLabel2.setText("Recebidos:");
-
-        jLabel3.setFont(new java.awt.Font("Verdana", 3, 12)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(0, 51, 153));
-        jLabel3.setText("Despesas:");
-
-        jLabel4.setFont(new java.awt.Font("Verdana", 0, 11)); // NOI18N
-        jLabel4.setText("Renda extra");
-
-        jLabel5.setFont(new java.awt.Font("Verdana", 0, 11)); // NOI18N
-        jLabel5.setText("Mesada");
-
-        jLabel6.setFont(new java.awt.Font("Verdana", 0, 11)); // NOI18N
-        jLabel6.setText("Frelancer");
-
-        jLabel7.setFont(new java.awt.Font("Verdana", 0, 11)); // NOI18N
-        jLabel7.setText("Salário");
-
-        jLabel8.setFont(new java.awt.Font("Verdana", 0, 11)); // NOI18N
-        jLabel8.setText("Alimentação");
-
-        jLabel9.setFont(new java.awt.Font("Verdana", 0, 11)); // NOI18N
-        jLabel9.setText("Automóvel");
-
-        jLabel10.setFont(new java.awt.Font("Verdana", 0, 11)); // NOI18N
-        jLabel10.setText("Saúde");
-
-        jLabel11.setFont(new java.awt.Font("Verdana", 0, 11)); // NOI18N
-        jLabel11.setText("Lazer");
-
-        jLabel12.setFont(new java.awt.Font("Verdana", 0, 11)); // NOI18N
-        jLabel12.setText("Investimento");
-
-        jLabel13.setFont(new java.awt.Font("Verdana", 0, 11)); // NOI18N
-        jLabel13.setText("Outros");
-
-        jLabel14.setFont(new java.awt.Font("Verdana", 0, 11)); // NOI18N
-        jLabel14.setText("Casa");
-
-        jLabel15.setFont(new java.awt.Font("Verdana", 0, 11)); // NOI18N
-        jLabel15.setText("Compras");
-
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(14, 14, 14)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel4)
-                    .addComponent(jLabel5)
-                    .addComponent(jLabel15)
-                    .addComponent(jLabel13)
-                    .addComponent(jLabel3)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel10)
-                    .addComponent(jLabel8)
-                    .addComponent(jLabel11)
-                    .addComponent(jLabel9)
-                    .addComponent(jLabel12)
-                    .addComponent(jLabel14)
-                    .addComponent(jLabel6)
-                    .addComponent(jLabel7))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(18, 18, 18)
-                .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel6)
-                .addGap(4, 4, 4)
-                .addComponent(jLabel5)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel4)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel7)
-                .addGap(36, 36, 36)
-                .addComponent(jLabel3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel8)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel9)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel14)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel15)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel12)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel11)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel13)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel10)
-                .addContainerGap(103, Short.MAX_VALUE))
-        );
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(15, 15, 15)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1099, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(145, 145, 145)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnRecebidos, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblRecebidos, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btnRecebidos, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblRecebidos, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(196, 196, 196)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btnDespesas, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblDespesas, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(176, 176, 176)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btnSaldo, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblSaldo, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 880, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(btnTipos, javax.swing.GroupLayout.DEFAULT_SIZE, 206, Short.MAX_VALUE)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(21, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(lblDespesas, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(186, 186, 186))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(184, 184, 184)
+                        .addComponent(btnDespesas, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnSaldo, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblSaldo, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(147, 147, 147))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(27, 27, 27)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 514, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(btnTipos, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 514, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(12, 12, 12)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(btnSaldo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btnDespesas, javax.swing.GroupLayout.DEFAULT_SIZE, 27, Short.MAX_VALUE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnRecebidos, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblDespesas, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnRecebidos, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnDespesas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnSaldo, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblSaldo, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblDespesas, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblRecebidos, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(0, 18, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         pack();
@@ -553,7 +435,8 @@ public class Cadastro extends javax.swing.JFrame {
         Dados dados = new Dados();
 
         String nome = tfNome.getText().trim();
-        String classificacao = tfClassificacao.getText().trim();
+
+        String classificacao = cbClassificacao.getSelectedItem().toString().trim();
         String valorText = tfValor.getText().trim();
 
         if (nome.isEmpty() || classificacao.isEmpty() || valorText.isEmpty() || tfData.getText().trim().isEmpty() || tfDataCadastro.getText().trim().isEmpty()) {
@@ -642,7 +525,7 @@ public class Cadastro extends javax.swing.JFrame {
             } catch (RuntimeException e) {
                 JOptionPane.showMessageDialog(null, "Erro ao excluir produto: " + e.getMessage());
             } finally {
-                conexao.fecharConexao(); // Verifique se este método existe na sua classe Conexao
+                conexao.close();// Verifique se este método existe na sua classe Conexao
             }
         } else {
             JOptionPane.showMessageDialog(null, "Nenhuma linha selecionada para remover.");
@@ -653,7 +536,7 @@ public class Cadastro extends javax.swing.JFrame {
 
         if (tbprodutos.getSelectedRow() != -1) {
             tfNome.setText(tbprodutos.getValueAt(tbprodutos.getSelectedRow(), 0).toString());
-            tfClassificacao.setText(tbprodutos.getValueAt(tbprodutos.getSelectedRow(), 1).toString());
+            cbClassificacao.setSelectedItem(tbprodutos.getValueAt(tbprodutos.getSelectedRow(), 1).toString());
             tfValor.setText(tbprodutos.getValueAt(tbprodutos.getSelectedRow(), 2).toString());
             tfData.setText(tbprodutos.getValueAt(tbprodutos.getSelectedRow(), 3).toString());
             tfDataCadastro.setText(tbprodutos.getValueAt(tbprodutos.getSelectedRow(), 4).toString());
@@ -662,58 +545,10 @@ public class Cadastro extends javax.swing.JFrame {
     }//GEN-LAST:event_tbprodutosMouseClicked
 
     private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
-        int rowCount = tbprodutos.getRowCount(); // Obtém o número de linhas da tabela
-
-        if (rowCount == 0) { // Verifica se a tabela está vazia
-            JOptionPane.showMessageDialog(this, "Nenhum dado para salvar!", "Aviso", JOptionPane.WARNING_MESSAGE);
-            return; // Sai do método se não houver dados para salvar
-        }
-
-        // Conexão com o banco de dados
-        Conexao conexao = new Conexao();
-        DadosDAO dadosDAO = new DadosDAO(conexao);
-
-        // Verifica se a conexão foi bem-sucedida
-        if (conexao.getConexao() != null) {
-            try {
-                // Percorre todas as linhas da tabela para salvar os dados
-                for (int i = 0; i < rowCount; i++) {
-                    Dados dados = new Dados();
-
-                    // Obtém os valores das colunas da linha atual
-                    String nome = (String) tbprodutos.getValueAt(i, 0);
-                    String classificacao = (String) tbprodutos.getValueAt(i, 1);
-                    double valor = (double) tbprodutos.getValueAt(i, 2);
-                    LocalDate data = LocalDate.parse((String) tbprodutos.getValueAt(i, 3));
-                    LocalDate dataCadastro = LocalDate.parse((String) tbprodutos.getValueAt(i, 4));
-
-                    // Define os valores no objeto Dados
-                    dados.setNome(nome);
-                    dados.setClassificacao(classificacao);
-                    dados.setValor(valor);
-                    dados.setData(data);
-                    dados.setDataCadastro(dataCadastro);
-
-                    // Insere os dados no banco usando o DAO
-                    dadosDAO.inserir(dados);
-                }
-
-                JOptionPane.showMessageDialog(this, "Dados salvos com sucesso!");
-            } catch (Exception e) {
-                JOptionPane.showMessageDialog(this, "Erro ao salvar os dados: " + e.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
-            }
-        } else {
-            JOptionPane.showMessageDialog(this, "Falha na conexão com o banco de dados.", "Erro", JOptionPane.ERROR_MESSAGE);
-        }
+        JOptionPane.showMessageDialog(this, "Dados salvos com sucesso!", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
     }//GEN-LAST:event_btnSalvarActionPerformed
 
-    private void btnTiposActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTiposActionPerformed
-
-
-    }//GEN-LAST:event_btnTiposActionPerformed
-
     private void btnSaldoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaldoActionPerformed
-
         double totalRecebidos = 0.0;
         double totalDespesas = 0.0;
 
@@ -724,25 +559,6 @@ public class Cadastro extends javax.swing.JFrame {
             "Freelancer"
         };
 
-        DefaultTableModel tbProdutos = (DefaultTableModel) tbprodutos.getModel();
-        for (int i = 0; i < tbProdutos.getRowCount(); i++) {
-            String classificacao = (String) tbProdutos.getValueAt(i, 1); // Coluna 1: Classificação
-            String valorStr = (String) tbProdutos.getValueAt(i, 2); // Coluna 2: Valor
-
-            for (String categoria : categoriasRecebidos) {
-                if (classificacao.equalsIgnoreCase(categoria)) {
-                    try {
-                        double valor = Double.parseDouble(valorStr);
-                        totalRecebidos += valor;
-                    } catch (NumberFormatException e) {
-                        System.out.println("Erro ao converter valor: " + valorStr);
-                    }
-                    break;
-                }
-            }
-        }
-
-        // Calcular totalDespesas
         String[] categoriasDespesas = {
             "Alimentação",
             "Automóvel",
@@ -754,26 +570,35 @@ public class Cadastro extends javax.swing.JFrame {
             "Casa"
         };
 
+        DefaultTableModel tbProdutos = (DefaultTableModel) tbprodutos.getModel();
         for (int i = 0; i < tbProdutos.getRowCount(); i++) {
             String classificacao = (String) tbProdutos.getValueAt(i, 1); // Coluna 1: Classificação
-            String valorStr = (String) tbProdutos.getValueAt(i, 2); // Coluna 2: Valor
+            Object valorObj = tbProdutos.getValueAt(i, 2); // Coluna 2: Valor como Object
 
-            for (String categoria : categoriasDespesas) {
-                if (classificacao.equalsIgnoreCase(categoria)) {
-                    try {
-                        double valor = Double.parseDouble(valorStr);
-                        totalDespesas += valor;
-                    } catch (NumberFormatException e) {
-                        System.out.println("Erro ao converter valor: " + valorStr);
-                    }
-                    break;
+            try {
+                double valor;
+                if (valorObj instanceof Double) {
+                    valor = (Double) valorObj; 
+                } else if (valorObj instanceof String) {
+                    valor = Double.parseDouble((String) valorObj); // Se for String, converta
+                } else {
+                    continue; 
                 }
+
+                if (Arrays.asList(categoriasRecebidos).contains(classificacao)) {
+                    totalRecebidos += valor;
+                } else if (Arrays.asList(categoriasDespesas).contains(classificacao)) {
+                    totalDespesas += valor;
+                }
+            } catch (NumberFormatException e) {
+                System.out.println("Erro ao converter valor: " + valorObj);
+                JOptionPane.showMessageDialog(this, "Erro ao converter valor: " + valorObj, "Erro", JOptionPane.ERROR_MESSAGE);
             }
         }
 
         double saldoDisponivel = totalRecebidos - totalDespesas;
-
         lblSaldo.setText("R$ " + String.format("%.2f", saldoDisponivel));
+
     }//GEN-LAST:event_btnSaldoActionPerformed
 
     private void btnDespesasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDespesasActionPerformed
@@ -794,131 +619,81 @@ public class Cadastro extends javax.swing.JFrame {
 
         for (int i = 0; i < tbProdutos.getRowCount(); i++) {
             String classificacao = (String) tbProdutos.getValueAt(i, 1); // Coluna 1: Classificação
-            String valorStr = (String) tbProdutos.getValueAt(i, 2); // Coluna 2: Valor
+            Object valorObj = tbProdutos.getValueAt(i, 2); // Coluna 2: Valor
 
-            for (String categoria : categoriasDespesas) {
-                if (classificacao.equalsIgnoreCase(categoria)) {
-                    try {
-                        double valor = Double.parseDouble(valorStr);
+            // Verifique se o valor é do tipo correto
+            if (valorObj instanceof Number) {
+                double valor = ((Number) valorObj).doubleValue();
+                for (String categoria : categoriasDespesas) {
+                    if (classificacao.equalsIgnoreCase(categoria)) {
                         totalDespesas += valor;
-                    } catch (NumberFormatException e) {
-                        System.out.println("Erro ao converter valor: " + valorStr);
+                        break; // Se encontrar uma categoria, não precisa continuar verificando
                     }
-                    break;
                 }
+            } else if (valorObj instanceof String) {
+                String valorStr = (String) valorObj;
+                try {
+                    double valor = Double.parseDouble(valorStr);
+                    for (String categoria : categoriasDespesas) {
+                        if (classificacao.equalsIgnoreCase(categoria)) {
+                            totalDespesas += valor;
+                            break; // Se encontrar uma categoria, não precisa continuar verificando
+                        }
+                    }
+                } catch (NumberFormatException e) {
+                    System.out.println("Erro ao converter valor: " + valorStr);
+                }
+            } else {
+                System.out.println("Valor não é um número válido: " + valorObj);
             }
         }
 
-        lblDespesas.setText(" R$ " + String.format("%.2f", totalDespesas));
+        // Atualiza o rótulo com o total de despesas formatado
+        lblDespesas.setText("R$ " + String.format("%.2f", totalDespesas));
 
 
     }//GEN-LAST:event_btnDespesasActionPerformed
 
-    private void btnAtualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAtualizarActionPerformed
-        if (tbprodutos.getSelectedRow() != -1) {
-            int selectedRow = tbprodutos.getSelectedRow();
-
-            String nome = tfNome.getText().trim();
-            String classificacao = tfClassificacao.getText().trim();
-            String valorText = tfValor.getText().trim();
-            String dataText = tfData.getText().trim();
-            String dataCadastroText = tfDataCadastro.getText().trim();
-
-            // Verifica se todos os campos estão preenchidos
-            if (nome.isEmpty() || classificacao.isEmpty() || valorText.isEmpty() || dataText.isEmpty() || dataCadastroText.isEmpty()) {
-                JOptionPane.showMessageDialog(this, "Por favor, preencha todos os campos!", "Erro", JOptionPane.ERROR_MESSAGE);
-                return;
-            }
-
-            try {
-            
-                double valor = Double.parseDouble(valorText);
-                DateTimeFormatter formato = DateTimeFormatter.ofPattern("dd-MM-yyyy");
-                LocalDate data = LocalDate.parse(dataText, formato);
-                LocalDate dataCadastro = LocalDate.parse(dataCadastroText, formato);
-
-                // Cria um objeto Dados e preenche os atributos
-                Dados dados = new Dados();
-                dados.setNome(nome);
-                dados.setClassificacao(classificacao);
-                dados.setValor(valor);
-                dados.setData(data);
-                dados.setDataCadastro(dataCadastro);
-
-        
-                int id = (int) tbprodutos.getValueAt(selectedRow, 0);
-                dados.setId(id);
-
-                // Atualiza o banco de dados
-                Conexao conexao = new Conexao();
-                DadosDAO dadosDAO = new DadosDAO(conexao);
-
-                if (conexao.getConexao() != null) {
-                    dadosDAO.atualizar(dados);
-                    System.out.println("Dados atualizados com sucesso!");
-
-                    // Atualiza a tabela com os novos valores
-                    tbprodutos.setValueAt(nome, selectedRow, 1);
-                    tbprodutos.setValueAt(classificacao, selectedRow, 2);
-                    tbprodutos.setValueAt(valorText, selectedRow, 3);
-                    tbprodutos.setValueAt(data.toString(), selectedRow, 4);
-                    tbprodutos.setValueAt(dataCadastro.toString(), selectedRow, 5);
-
-                } else {
-                    JOptionPane.showMessageDialog(this, "Falha na conexão com o banco de dados.", "Erro", JOptionPane.ERROR_MESSAGE);
-                }
-
-            } catch (DateTimeParseException e) {
-                JOptionPane.showMessageDialog(this, "Erro ao converter a data: " + e.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
-            } catch (NumberFormatException e) {
-                JOptionPane.showMessageDialog(this, "Valor inválido: " + e.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
-            } catch (RuntimeException e) {
-                JOptionPane.showMessageDialog(this, "Erro ao atualizar dados: " + e.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
-            }
-        } else {
-            JOptionPane.showMessageDialog(this, "Selecione um registro para atualizar.", "Aviso", JOptionPane.WARNING_MESSAGE);
-        }
-    }//GEN-LAST:event_btnAtualizarActionPerformed
-
-    private void tfClassificacaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfClassificacaoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_tfClassificacaoActionPerformed
-
     private void btnRecebidosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRecebidosActionPerformed
-        DefaultTableModel tbProdutos = (DefaultTableModel) tbprodutos.getModel();
+
         double totalRecebidos = 0.0;
 
-        String[] categoriasRecebidos = {
-            "Salário",
-            "Renda extra",
-            "Mesada",
-            "Frelancer"
-
-        };
+        DefaultTableModel tbProdutos = (DefaultTableModel) tbprodutos.getModel();
+        String[] categoriasRecebidos = {"Salário", "Renda extra", "Mesada", "Freelancer"};
 
         for (int i = 0; i < tbProdutos.getRowCount(); i++) {
             String classificacao = (String) tbProdutos.getValueAt(i, 1); // Coluna 1: Classificação
-            String valorStr = (String) tbProdutos.getValueAt(i, 2); // Coluna 2: Valor
+            Object valorObj = tbProdutos.getValueAt(i, 2); // Coluna 2: Valor
 
-            for (String categoria : categoriasRecebidos) {
-                if (classificacao.equalsIgnoreCase(categoria)) {
-                    try {
-                        double valor = Double.parseDouble(valorStr);
+            // Verifique se o valor é do tipo correto
+            if (valorObj instanceof Number) {
+                double valor = ((Number) valorObj).doubleValue();
+                for (String categoria : categoriasRecebidos) {
+                    if (classificacao.equalsIgnoreCase(categoria)) {
                         totalRecebidos += valor;
-                    } catch (NumberFormatException e) {
-                        System.out.println("Erro ao converter valor: " + valorStr);
+                        break;
                     }
-                    break;
                 }
+            } else {
+                System.out.println("Valor não é um número válido: " + valorObj);
             }
         }
 
-        lblRecebidos.setText(" R$ " + String.format("%.2f", totalRecebidos));        // TODO add your handling code here:
+        // Atualiza o rótulo com o total recebido formatado
+        lblRecebidos.setText("R$ " + String.format("%.2f", totalRecebidos));
     }//GEN-LAST:event_btnRecebidosActionPerformed
 
     private void tfDataCadastroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfDataCadastroActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_tfDataCadastroActionPerformed
+
+    private void cbClassificacaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbClassificacaoActionPerformed
+
+    }//GEN-LAST:event_cbClassificacaoActionPerformed
+
+    private void btnSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSairActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_btnSairActionPerformed
 
     /**
      * @param args the command line arguments
@@ -957,32 +732,17 @@ public class Cadastro extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnApagar;
-    private javax.swing.JButton btnAtualizar;
     private javax.swing.JButton btnCadastro;
     private javax.swing.JButton btnDespesas;
     private javax.swing.JButton btnGanho1;
     private javax.swing.JButton btnGastos;
     private javax.swing.JButton btnRecebidos;
+    private javax.swing.JButton btnSair;
     private javax.swing.JButton btnSaldo;
     private javax.swing.JButton btnSalvar;
-    private javax.swing.JButton btnTipos;
+    private javax.swing.JComboBox<String> cbClassificacao;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel12;
-    private javax.swing.JLabel jLabel13;
-    private javax.swing.JLabel jLabel14;
-    private javax.swing.JLabel jLabel15;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblClassificacao;
     private javax.swing.JLabel lblData1;
@@ -994,10 +754,43 @@ public class Cadastro extends javax.swing.JFrame {
     private javax.swing.JLabel lblSaldo;
     private javax.swing.JLabel lblValor;
     private javax.swing.JTable tbprodutos;
-    private javax.swing.JTextField tfClassificacao;
     private javax.swing.JTextField tfData;
     private javax.swing.JTextField tfDataCadastro;
     private javax.swing.JTextField tfNome;
     private javax.swing.JTextField tfValor;
     // End of variables declaration//GEN-END:variables
+
+    private void carregarDadosTabela() {
+
+        DefaultTableModel modelo = (DefaultTableModel) tbprodutos.getModel();
+        modelo.setRowCount(0);
+
+        // Conexão com o banco de dados
+        Conexao conexao = new Conexao();
+        DadosDAO dadosDAO = new DadosDAO(conexao);
+
+        if (conexao.getConexao() != null) {
+            try {
+                // Recupera os dados do banco usando o DAO
+                ArrayList<Dados> listaDados = dadosDAO.consultar();
+
+                // Percorre a lista de dados e adiciona na tabela
+                for (Dados dados : listaDados) {
+                    Object[] linha = {
+                        dados.getNome(),
+                        dados.getClassificacao(),
+                        dados.getValor(),
+                        dados.getData().toString(),
+                        dados.getDataCadastro().toString()
+                    };
+                    modelo.addRow(linha);
+                }
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(this, "Erro ao carregar os dados: " + e.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
+            }
+        } else {
+            JOptionPane.showMessageDialog(this, "Falha na conexão com o banco de dados.", "Erro", JOptionPane.ERROR_MESSAGE);
+        }
+
+    }
 }

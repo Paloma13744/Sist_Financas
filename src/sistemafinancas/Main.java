@@ -16,7 +16,7 @@ public class Main {
         } else {
             System.out.println("Falha na conexão.");
         }
-        if (conexao != null) {
+        if (conexao == null) {
             try {
                 conexao.close(); // Fecha a conexão
                 System.out.println("Conexão fechada.");

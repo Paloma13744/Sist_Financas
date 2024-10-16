@@ -11,6 +11,8 @@ import bancoDados.Conexao;
 import java.sql.SQLException;
 import java.sql.PreparedStatement;
 import bancoDados.Conexao;
+import java.awt.Image;
+import java.awt.Toolkit;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import sistemafinancas.Dados;
@@ -20,6 +22,8 @@ import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import javax.swing.JComboBox;
+
+
 
 /**
  *
@@ -31,7 +35,16 @@ public class Cadastro extends javax.swing.JFrame {
      * Creates new form Cadastro
      */
     public Cadastro() {
+        
+          // Carregando o ícone a partir do pacote "sistemafinancas"
+        Image icone = Toolkit.getDefaultToolkit().getImage(getClass().getClassLoader().getResource("sistemafinancas/icone.png"));
+
+        // Definindo o ícone da janela
+        setIconImage(icone);
         initComponents();
+      
+        // Define o ícone da janela
+        setIconImage(icone);
         carregarDadosTabela();
     }
 
@@ -648,7 +661,6 @@ public class Cadastro extends javax.swing.JFrame {
             }
         }
 
-        // Atualiza o rótulo com o total de despesas formatado
         lblDespesas.setText("R$ " + String.format("%.2f", totalDespesas));
 
 
@@ -771,7 +783,7 @@ public class Cadastro extends javax.swing.JFrame {
 
         if (conexao.getConexao() != null) {
             try {
-                // Recupera os dados do banco usando o DAO
+           
                 ArrayList<Dados> listaDados = dadosDAO.consultar();
 
                 // Percorre a lista de dados e adiciona na tabela

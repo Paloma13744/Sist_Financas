@@ -10,7 +10,6 @@ Este projeto é um sistema de cadastro desenvolvido em Java utilizando a bibliot
 ## Funcionalidades
 
 - **Cadastro de Dados**: Permite ao usuário cadastrar informações pessoais.
-- **Atualização de Dados**: Possibilita a atualização das informações já cadastradas.
 - **Exclusão de Dados**: Permite ao usuário apagar dados cadastrados.
 - **Listagem de Dados**: Mostra todos os dados cadastrados para fácil visualização.
 

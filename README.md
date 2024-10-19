@@ -38,7 +38,7 @@ O projeto é composto pelas seguintes classes principais:
 **Adicione o conector dentro de uma livraria: "Coloque o nome de MySQL" conforme imagem mostrada:**
 ![image](https://github.com/user-attachments/assets/63eff4c7-225f-41ed-aada-1ed99f9c71a8)
 
-**Adicione o conector** 
+**Adicione o conector:** 
 
 ![image](https://github.com/user-attachments/assets/397f9ceb-f10e-4dd0-a0a4-7edf20317229)
 
@@ -52,6 +52,7 @@ O projeto é composto pelas seguintes classes principais:
 
 
 **O conector mysql-connector-j-8.0.33 e o script do banco estão aqui disponíveis no projeto também:**
+
 ![image](https://github.com/user-attachments/assets/a2e68568-dcf7-42a1-8d80-d2358c649828)
 
 

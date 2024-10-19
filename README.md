@@ -5,7 +5,7 @@
 ![image](https://github.com/user-attachments/assets/b0bbdb38-4de9-489f-8df1-c9bc6948d4da)
 
 
-Este projeto é um sistema de cadastro desenvolvido em Java utilizando a biblioteca Swing para a interface gráfica. O sistema permite cadastrar, atualizar, apagar e salvar informações relacionadas a despesas e recebimentos pessoais.
+Este projeto é um sistema de cadastro desenvolvido em Java utilizando a biblioteca Swing para a interface gráfica. O sistema permite cadastrar, apagar e salvar informações relacionadas a despesas e recebimentos pessoais.
 
 ## Funcionalidades
 
@@ -39,15 +39,19 @@ O projeto é composto pelas seguintes classes principais:
 ![image](https://github.com/user-attachments/assets/63eff4c7-225f-41ed-aada-1ed99f9c71a8)
 
 **Adicione o conector** 
+
 ![image](https://github.com/user-attachments/assets/397f9ceb-f10e-4dd0-a0a4-7edf20317229)
+
+
 
 ![image](https://github.com/user-attachments/assets/5b7eba55-bca5-41f8-9acd-21ca80740eab)
 
 **Após clique em OK e adicione :**
+
 ![image](https://github.com/user-attachments/assets/907cede1-af0a-40af-8572-d18c91b42154)
 
 
-**O conector mysql-connector-j-8.0.33 e o script do banco estão aqui disponível no projeto também:**
+**O conector mysql-connector-j-8.0.33 e o script do banco estão aqui disponíveis no projeto também:**
 ![image](https://github.com/user-attachments/assets/a2e68568-dcf7-42a1-8d80-d2358c649828)
 
 

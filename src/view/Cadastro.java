@@ -1,6 +1,5 @@
 package view;
 
-import com.sun.jdi.connect.spi.Connection;
 import java.awt.List;
 import java.util.Arrays;
 import java.sql.SQLException;
@@ -8,14 +7,14 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import DAO.DadosDAO;
 import bancoDados.Conexao;
-import java.sql.SQLException;
 import java.sql.PreparedStatement;
 import bancoDados.Conexao;
+import controller.CadastroController;
 import java.awt.Image;
 import java.awt.Toolkit;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import sistemafinancas.Dados;
+import model.Dados;
 import java.text.ParseException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -23,29 +22,27 @@ import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import javax.swing.JComboBox;
 
-
-
 /**
  *
  * @author paloma
  */
 public class Cadastro extends javax.swing.JFrame {
 
-    /**
-     * Creates new form Cadastro
-     */
-    public Cadastro() {
-        
-          // Carregando o ícone a partir do pacote "sistemafinancas"
-        Image icone = Toolkit.getDefaultToolkit().getImage(getClass().getClassLoader().getResource("sistemafinancas/icone.png"));
+    private CadastroController cadastroController;
 
-        // Definindo o ícone da janela
+    public Cadastro() {
+
+        Image icone = Toolkit.getDefaultToolkit().getImage(getClass().getClassLoader().getResource("model/icone.png"));
         setIconImage(icone);
         initComponents();
-      
-        // Define o ícone da janela
-        setIconImage(icone);
+
+        Conexao conexao = new Conexao();
+        DadosDAO dadosDAO = new DadosDAO(conexao);
+
+        // Instanciar o CadastroController
+        cadastroController = new CadastroController(dadosDAO);
         carregarDadosTabela();
+
     }
 
     /**
@@ -237,24 +234,23 @@ public class Cadastro extends javax.swing.JFrame {
                                 .addGap(18, 18, 18)
                                 .addComponent(cbClassificacao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 185, Short.MAX_VALUE)
+                                .addComponent(jLabel1)
+                                .addGap(137, 137, 137))
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(125, 125, 125)
-                                .addComponent(btnCadastro, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
+                                .addGap(247, 247, 247)
                                 .addComponent(btnApagar, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
                                 .addComponent(btnSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(btnSair, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(97, 97, 97))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel1)
-                                .addGap(137, 137, 137))))
+                                .addGap(27, 27, 27)
+                                .addComponent(btnSair, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(lblGanho)
-                        .addGap(566, 566, 566)))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btnCadastro, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblGanho))
+                        .addGap(466, 466, 466)))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(12, 12, 12)
@@ -310,12 +306,11 @@ public class Cadastro extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(btnApagar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(btnCadastro, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(btnSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(btnSair, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(btnCadastro, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnSair, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(41, 41, 41))))
         );
 
@@ -400,7 +395,7 @@ public class Cadastro extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(15, 15, 15)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1099, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(34, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addGap(145, 145, 145)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -444,54 +439,37 @@ public class Cadastro extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCadastroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastroActionPerformed
-
-        Dados dados = new Dados();
-
         String nome = tfNome.getText().trim();
-
         String classificacao = cbClassificacao.getSelectedItem().toString().trim();
         String valorText = tfValor.getText().trim();
 
-        if (nome.isEmpty() || classificacao.isEmpty() || valorText.isEmpty() || tfData.getText().trim().isEmpty() || tfDataCadastro.getText().trim().isEmpty()) {
+        if (nome.isEmpty() || classificacao.isEmpty() || valorText.isEmpty()
+                || tfData.getText().trim().isEmpty() || tfDataCadastro.getText().trim().isEmpty()) {
             JOptionPane.showMessageDialog(this, "Por favor, preencha todos os campos!", "Erro", JOptionPane.ERROR_MESSAGE);
             return;
         }
 
-        dados.setNome(nome);
-        dados.setClassificacao(classificacao);
-
         try {
             double valor = Double.parseDouble(valorText);
-            dados.setValor(valor);
 
             DateTimeFormatter formato = DateTimeFormatter.ofPattern("dd-MM-yyyy");
             LocalDate data = LocalDate.parse(tfData.getText(), formato);
             LocalDate dataCadastro = LocalDate.parse(tfDataCadastro.getText(), formato);
 
-            dados.setData(data);
-            dados.setDataCadastro(dataCadastro);
+            cadastroController.addDados(0, nome, classificacao, valor, data, dataCadastro);
 
-            // Insere os dados no banco usando o DAO
-            Conexao conexao = new Conexao();
-            DadosDAO dadosDAO = new DadosDAO(conexao);
+            // Atualize a tabela
+            DefaultTableModel tbProdutos = (DefaultTableModel) tbprodutos.getModel();
+            Object[] novaLinha = {
+                nome,
+                classificacao,
+                valor,
+                data.toString(),
+                dataCadastro.toString()
+            };
+            tbProdutos.addRow(novaLinha);
 
-            // Verifica se a conexão foi bem-sucedida
-            if (conexao.getConexao() != null) {
-                dadosDAO.inserir(dados);
-                System.out.println("Dados inseridos com sucesso!");
-
-                DefaultTableModel tbProdutos = (DefaultTableModel) tbprodutos.getModel();
-                Object[] novaLinha = {
-                    dados.getNome(),
-                    dados.getClassificacao(),
-                    dados.getValor(),
-                    dados.getData().toString(),
-                    dados.getDataCadastro().toString()
-                };
-                tbProdutos.addRow(novaLinha);
-            } else {
-                JOptionPane.showMessageDialog(this, "Falha na conexão com o banco de dados.", "Erro", JOptionPane.ERROR_MESSAGE);
-            }
+            JOptionPane.showMessageDialog(this, "Dados inseridos com sucesso!", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
 
         } catch (DateTimeParseException e) {
             JOptionPane.showMessageDialog(this, "Erro ao converter a data: " + e.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
@@ -500,7 +478,6 @@ public class Cadastro extends javax.swing.JFrame {
         } catch (RuntimeException e) {
             JOptionPane.showMessageDialog(this, "Erro ao inserir dados: " + e.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
         }
-
 
     }//GEN-LAST:event_btnCadastroActionPerformed
 
@@ -513,20 +490,17 @@ public class Cadastro extends javax.swing.JFrame {
     }//GEN-LAST:event_tfValorActionPerformed
 
     private void btnApagarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnApagarActionPerformed
-        Conexao conexao = new Conexao();
-        DadosDAO dadosDAO = new DadosDAO(conexao);
         int selectedRow = tbprodutos.getSelectedRow();
 
         if (selectedRow != -1) {
             String nomeProduto = (String) tbprodutos.getValueAt(selectedRow, 0);
 
-            // Criar um objeto Dados com o nome do produto
-            Dados dadosParaExcluir = new Dados();
-            dadosParaExcluir.setNome(nomeProduto); 
+            // Criar um objeto CadastroController
+            CadastroController cadastroController = new CadastroController(new DadosDAO(new Conexao()));
 
             try {
-               
-                dadosDAO.apagar(dadosParaExcluir);
+                // Utiliza o método do controller para remover os dados pelo nome
+                cadastroController.removeDados(nomeProduto);
 
                 DefaultTableModel tbProdutos = (DefaultTableModel) tbprodutos.getModel();
                 tbProdutos.removeRow(selectedRow);
@@ -534,8 +508,6 @@ public class Cadastro extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, "Produto excluído com sucesso!");
             } catch (RuntimeException e) {
                 JOptionPane.showMessageDialog(null, "Erro ao excluir produto: " + e.getMessage());
-            } finally {
-                conexao.close();
             }
         } else {
             JOptionPane.showMessageDialog(null, "Nenhuma linha selecionada para remover.");
@@ -588,11 +560,11 @@ public class Cadastro extends javax.swing.JFrame {
             try {
                 double valor;
                 if (valorObj instanceof Double) {
-                    valor = (Double) valorObj; 
+                    valor = (Double) valorObj;
                 } else if (valorObj instanceof String) {
-                    valor = Double.parseDouble((String) valorObj); 
+                    valor = Double.parseDouble((String) valorObj);
                 } else {
-                    continue; 
+                    continue;
                 }
 
                 if (Arrays.asList(categoriasRecebidos).contains(classificacao)) {
@@ -646,7 +618,7 @@ public class Cadastro extends javax.swing.JFrame {
                     for (String categoria : categoriasDespesas) {
                         if (classificacao.equalsIgnoreCase(categoria)) {
                             totalDespesas += valor;
-                            break; 
+                            break;
                         }
                     }
                 } catch (NumberFormatException e) {
@@ -673,7 +645,6 @@ public class Cadastro extends javax.swing.JFrame {
             String classificacao = (String) tbProdutos.getValueAt(i, 1); // Coluna 1: Classificação
             Object valorObj = tbProdutos.getValueAt(i, 2); // Coluna 2: Valor
 
-         
             if (valorObj instanceof Number) {
                 double valor = ((Number) valorObj).doubleValue();
                 for (String categoria : categoriasRecebidos) {
@@ -692,7 +663,7 @@ public class Cadastro extends javax.swing.JFrame {
     }//GEN-LAST:event_btnRecebidosActionPerformed
 
     private void tfDataCadastroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfDataCadastroActionPerformed
-     
+
     }//GEN-LAST:event_tfDataCadastroActionPerformed
 
     private void cbClassificacaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbClassificacaoActionPerformed
@@ -779,7 +750,7 @@ public class Cadastro extends javax.swing.JFrame {
 
         if (conexao.getConexao() != null) {
             try {
-           
+
                 ArrayList<Dados> listaDados = dadosDAO.consultar();
 
                 // Percorre a lista de dados e adiciona na tabela
@@ -800,5 +771,9 @@ public class Cadastro extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Falha na conexão com o banco de dados.", "Erro", JOptionPane.ERROR_MESSAGE);
         }
 
+    }
+
+    public Object getTfNome() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 }

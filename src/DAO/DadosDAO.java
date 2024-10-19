@@ -4,7 +4,7 @@ import bancoDados.Conexao;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.SQLException;
-import sistemafinancas.Dados;
+import model.Dados;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.time.LocalDate;
@@ -41,54 +41,19 @@ public class DadosDAO implements interfaceDAO<Dados> {
         }
     }
 
-    /*
-    @Override
-    public void atualizar(Dados d) {
-        String sql = "UPDATE DADOS SET NOME = ?, CLASSIFICACAO = ?, VALOR = ?, DATA = ?, DATACADASTRO = ? WHERE ID = ?";
-
-        try (Connection conn = this.conexao.getConexao(); PreparedStatement stmt = conn.prepareStatement(sql)) {
-
-            if (conn == null) {
-                throw new RuntimeException("Conexão com o banco de dados não foi estabelecida.");
-            }
-
-            stmt.setString(1, d.getNome());
-            stmt.setString(2, d.getClassificacao());
-            stmt.setDouble(3, d.getValor());
-            stmt.setDate(4, java.sql.Date.valueOf(d.getData()));
-            stmt.setDate(5, java.sql.Date.valueOf(d.getDataCadastro()));
-            stmt.setInt(6, d.getId());
-
-            int linhasAfetadas = stmt.executeUpdate();
-            if (linhasAfetadas > 0) {
-                System.out.println("Atualização realizada com sucesso!");
-            } else {
-                System.out.println("Nenhum registro foi atualizado.");
-            }
-
-        } catch (SQLException ex) {
-            ex.printStackTrace();
-            throw new RuntimeException("Erro ao atualizar dados: " + ex.getMessage(), ex);
-        }
-    }
-
-    
-    */
-
+   
     @Override
     public void apagar(Dados d) {
         String sql = "DELETE FROM DADOS WHERE NOME = ?";
 
         try (Connection conn = this.conexao.getConexao(); PreparedStatement stmt = conn.prepareStatement(sql)) {
-
-            stmt.setString(1, d.getNome());
-
+            stmt.setString(1, d.getNome()); // Usa o nome para a exclusão
             int rowsAffected = stmt.executeUpdate();
 
             if (rowsAffected > 0) {
                 System.out.println("Exclusão realizada com sucesso!");
             } else {
-                System.out.println("Nenhum produto encontrado com o nome: " + d.getNome());
+                System.out.println("Nenhum registro encontrado com o nome: " + d.getNome());
             }
         } catch (SQLException ex) {
             throw new RuntimeException("Erro ao apagar dados: " + ex.getMessage(), ex);
@@ -123,7 +88,7 @@ public class DadosDAO implements interfaceDAO<Dados> {
     }
 
     public boolean existeRegistro(String nome, String classificacao, double valor, LocalDate data, LocalDate dataCadastro) {
-       String sql = "SELECT COUNT(*) FROM sua_tabela WHERE nome = ? AND classificacao = ? AND valor = ? AND data = ? AND dataCadastro = ?";
+        String sql = "SELECT COUNT(*) FROM sua_tabela WHERE nome = ? AND classificacao = ? AND valor = ? AND data = ? AND dataCadastro = ?";
         try (PreparedStatement stmt = conexao.getConexao().prepareStatement(sql)) {
             stmt.setString(1, nome);
             stmt.setString(2, classificacao);
@@ -137,9 +102,9 @@ public class DadosDAO implements interfaceDAO<Dados> {
             }
         } catch (SQLException e) {
             e.printStackTrace();
-         
+
         }
         return false; // Retorna false se não houver registros
     }
-    
+
 }

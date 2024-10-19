@@ -13,6 +13,6 @@ public interface interfaceDAO<Objeto> {
    // public void atualizar(Objeto ob);
 
     public void apagar(Objeto ob);
-    
+
     public ArrayList<Objeto> consultar();
 }

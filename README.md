@@ -42,11 +42,14 @@ O projeto é composto pelas seguintes classes principais:
 ![image](https://github.com/user-attachments/assets/397f9ceb-f10e-4dd0-a0a4-7edf20317229)
 
 ![image](https://github.com/user-attachments/assets/5b7eba55-bca5-41f8-9acd-21ca80740eab)
-**Após clique em OK e adicione :** ![image](https://github.com/user-attachments/assets/907cede1-af0a-40af-8572-d18c91b42154)
+
+**Após clique em OK e adicione :**
+![image](https://github.com/user-attachments/assets/907cede1-af0a-40af-8572-d18c91b42154)
 
 
-O conector mysql-connector-j-8.0.33 e o script do banco estão aqui disponível no projeto também:
-![image](https://github.com/user-attachments/assets/631fbe37-8140-4439-b092-7941208d3369)
+**O conector mysql-connector-j-8.0.33 e o script do banco estão aqui disponível no projeto também:**
+![image](https://github.com/user-attachments/assets/a2e68568-dcf7-42a1-8d80-d2358c649828)
+
 
 
 

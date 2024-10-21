@@ -32,7 +32,7 @@ O projeto é composto pelas seguintes classes principais:
 
 1. **Clone o Repositório**:
    ```bash
-   git clone https://github.com/Paloma13744/Sist_Financas.git
+   git clone https://github.com/Paloma13744/Sistema_Financas.git
 
 ## Uso do banco de dados:
 **Adicione o conector dentro de uma livraria: "Coloque o nome de MySQL" conforme imagem mostrada:**

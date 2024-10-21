@@ -2,7 +2,8 @@
 
 # Sistema Financeiro com Swing  💰
 
-![image](https://github.com/user-attachments/assets/b0bbdb38-4de9-489f-8df1-c9bc6948d4da)
+![image](https://github.com/user-attachments/assets/d909a94b-484f-45cb-bfe9-58e34acdbb6b)
+
 
 
 Este projeto é um sistema de cadastro desenvolvido em Java utilizando a biblioteca Swing para a interface gráfica. O sistema permite cadastrar, apagar e salvar informações relacionadas a despesas e recebimentos pessoais.

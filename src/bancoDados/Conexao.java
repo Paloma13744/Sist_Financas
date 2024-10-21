@@ -5,29 +5,27 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
 
-public class Conexao implements AutoCloseable { // Implementa a interface AutoCloseable
-
+public class Conexao implements AutoCloseable {
     private Connection conexao;
 
-    // Método para obter a conexão
     public Connection getConexao() {
-        if (conexao == null) {
-            try {
-                conexao = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/sistemafinanceiro", "root", "101100");
-            } catch (SQLException e) {
-                JOptionPane.showMessageDialog(null, "Erro de conexão: " + e.getMessage());
+        try {
+            // Se a conexão estiver fechada, abra uma nova
+            if (conexao == null || conexao.isClosed()) {
+                conexao = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/sistemafinanceiro", "root", "root");
             }
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Erro de conexão: " + e.getMessage());
         }
         return conexao;
     }
 
-    // Método que fecha a conexão
     @Override
     public void close() {
         if (conexao != null) {
             try {
                 conexao.close();
-                conexao = null; // Limpa a referência
+                conexao = null; // Limpa a referência após fechar
             } catch (SQLException e) {
                 JOptionPane.showMessageDialog(null, "Erro ao fechar conexão: " + e.getMessage());
             }

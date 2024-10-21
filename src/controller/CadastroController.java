@@ -15,7 +15,7 @@ public class CadastroController {
     }
 
     public void addDados(int id, String nome, String classificacao, double valor, LocalDate data, LocalDate dataCadastro) {
-        Dados dados = new Dados(0, nome, classificacao, valor, data, dataCadastro);
+        Dados dados = new Dados( id ,nome, classificacao, valor, data, dataCadastro);
         dadosDAO.inserir(dados);
     }
 

@@ -16,8 +16,7 @@ public class Dados {
     private LocalDate data;
     private LocalDate dataCadastro;
 
-    public Dados(int id, String nome, String classificacao, double valor, LocalDate data, LocalDate dataCadastro) {
-        this.id = id;
+    public Dados( int id , String nome, String classificacao, double valor, LocalDate data, LocalDate dataCadastro) {
         this.nome = nome;
         this.classificacao = classificacao;
         this.valor = valor;

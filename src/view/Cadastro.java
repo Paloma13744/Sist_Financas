@@ -29,6 +29,7 @@ import javax.swing.JComboBox;
 public class Cadastro extends javax.swing.JFrame {
 
     private CadastroController cadastroController;
+    private boolean mostrarValores = true;
 
     public Cadastro() {
 
@@ -43,6 +44,10 @@ public class Cadastro extends javax.swing.JFrame {
         cadastroController = new CadastroController(dadosDAO);
         carregarDadosTabela();
 
+        DateTimeFormatter formato = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+        String dataFormatada = LocalDate.now().format(formato);
+
+        tfDataCadastro.setText(dataFormatada);
     }
 
     /**
@@ -80,7 +85,8 @@ public class Cadastro extends javax.swing.JFrame {
         lblRecebidos = new javax.swing.JLabel();
         btnDespesas = new javax.swing.JButton();
         lblDespesas = new javax.swing.JLabel();
-        btnRecebidos = new javax.swing.JButton();
+        btnMostrarOcultar = new javax.swing.JButton();
+        btnRecebidos1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Sistema de Controle Financeiro");
@@ -148,7 +154,11 @@ public class Cadastro extends javax.swing.JFrame {
         });
 
         tfData.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
-        tfData.setText("15-10-2024");
+        tfData.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tfDataActionPerformed(evt);
+            }
+        });
 
         btnGastos.setBackground(new java.awt.Color(204, 51, 0));
         btnGastos.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
@@ -158,7 +168,6 @@ public class Cadastro extends javax.swing.JFrame {
         btnGastos.setBorderPainted(false);
 
         tfDataCadastro.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
-        tfDataCadastro.setText("15-10-2024");
         tfDataCadastro.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 tfDataCadastroActionPerformed(evt);
@@ -235,11 +244,13 @@ public class Cadastro extends javax.swing.JFrame {
                                 .addComponent(cbClassificacao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 185, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(jLabel1)
                                 .addGap(137, 137, 137))
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(247, 247, 247)
+                                .addGap(116, 116, 116)
+                                .addComponent(btnCadastro, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(31, 31, 31)
                                 .addComponent(btnApagar, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
                                 .addComponent(btnSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -247,26 +258,23 @@ public class Cadastro extends javax.swing.JFrame {
                                 .addComponent(btnSair, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btnCadastro, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblGanho))
-                        .addGap(466, 466, 466)))
+                        .addComponent(lblGanho)
+                        .addGap(566, 566, 566)))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(12, 12, 12)
                         .addComponent(btnGanho1, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnGastos, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addGroup(jPanel1Layout.createSequentialGroup()
-                            .addComponent(lblData1, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(tfDataCadastro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(jPanel1Layout.createSequentialGroup()
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(lblDataEntrada)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                            .addComponent(tfData, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(34, 34, 34))
+                            .addComponent(lblData1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(tfDataCadastro, javax.swing.GroupLayout.DEFAULT_SIZE, 108, Short.MAX_VALUE)
+                            .addComponent(tfData))))
+                .addGap(75, 75, 75))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -375,15 +383,22 @@ public class Cadastro extends javax.swing.JFrame {
 
         lblDespesas.setText("R$");
 
-        btnRecebidos.setBackground(new java.awt.Color(217, 232, 255));
-        btnRecebidos.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
-        btnRecebidos.setForeground(new java.awt.Color(0, 51, 153));
-        btnRecebidos.setText("Valores recebidos:");
-        btnRecebidos.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        btnRecebidos.setBorderPainted(false);
-        btnRecebidos.addActionListener(new java.awt.event.ActionListener() {
+        btnMostrarOcultar.setText("Mostrar Valores");
+        btnMostrarOcultar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnRecebidosActionPerformed(evt);
+                btnMostrarOcultarActionPerformed(evt);
+            }
+        });
+
+        btnRecebidos1.setBackground(new java.awt.Color(217, 232, 255));
+        btnRecebidos1.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
+        btnRecebidos1.setForeground(new java.awt.Color(0, 51, 153));
+        btnRecebidos1.setText("Valores recebidos:");
+        btnRecebidos1.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btnRecebidos1.setBorderPainted(false);
+        btnRecebidos1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRecebidos1ActionPerformed(evt);
             }
         });
 
@@ -397,19 +412,17 @@ public class Cadastro extends javax.swing.JFrame {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1099, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(34, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
-                .addGap(145, 145, 145)
+                .addGap(27, 27, 27)
+                .addComponent(btnMostrarOcultar)
+                .addGap(57, 57, 57)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnRecebidos, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblRecebidos, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(lblRecebidos, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnRecebidos1, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(170, 170, 170)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(lblDespesas, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(186, 186, 186))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(184, 184, 184)
-                        .addComponent(btnDespesas, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addComponent(btnDespesas, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblDespesas, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnSaldo, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblSaldo, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -418,20 +431,26 @@ public class Cadastro extends javax.swing.JFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(btnMostrarOcultar)
+                .addGap(40, 40, 40))
+            .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(27, 27, 27)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 514, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(btnDespesas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnRecebidos1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(btnSaldo, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnRecebidos, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnDespesas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnSaldo, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblSaldo, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblDespesas, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblRecebidos, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap())
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(lblDespesas, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(lblRecebidos, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(lblSaldo, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(12, Short.MAX_VALUE))
         );
 
         pack();
@@ -442,39 +461,54 @@ public class Cadastro extends javax.swing.JFrame {
         String nome = tfNome.getText().trim();
         String classificacao = cbClassificacao.getSelectedItem().toString().trim();
         String valorText = tfValor.getText().trim();
+        String dataText = tfData.getText().trim();
+        String dataCadastroText = tfDataCadastro.getText().trim();
 
         if (nome.isEmpty() || classificacao.isEmpty() || valorText.isEmpty()
-                || tfData.getText().trim().isEmpty() || tfDataCadastro.getText().trim().isEmpty()) {
+                || dataText.isEmpty() || dataCadastroText.isEmpty()) {
             JOptionPane.showMessageDialog(this, "Por favor, preencha todos os campos!", "Erro", JOptionPane.ERROR_MESSAGE);
             return;
         }
 
         try {
-            double valor = Double.parseDouble(valorText);
+            double valor = Double.parseDouble(valorText);  // Verifica se o valor é numérico
 
             DateTimeFormatter formato = DateTimeFormatter.ofPattern("dd-MM-yyyy");
-            LocalDate data = LocalDate.parse(tfData.getText(), formato);
-            LocalDate dataCadastro = LocalDate.parse(tfDataCadastro.getText(), formato);
+            LocalDate data = LocalDate.parse(dataText, formato);  // Usando o texto da data já sem espaços
+            LocalDate dataCadastro = LocalDate.parse(dataCadastroText, formato);  // Usando o texto da data de cadastro já sem espaços
 
+            // Adicionar dados ao controlador
             cadastroController.addDados(0, nome, classificacao, valor, data, dataCadastro);
 
-            // Atualize a tabela
+            // Limpar campos
+            tfNome.setText("");
+            tfValor.setText("");
+            tfDataCadastro.setText("");
+            tfData.setText("");        
+
+            // Formatar as datas para exibição no formato "dd-MM-yyyy"
+            String dataFormatada = data.format(formato);
+            String dataCadastroFormatada = dataCadastro.format(formato);
+
+            // Atualizar a tabela
             DefaultTableModel tbProdutos = (DefaultTableModel) tbprodutos.getModel();
             Object[] novaLinha = {
                 nome,
                 classificacao,
                 valor,
-                data.toString(),
-                dataCadastro.toString()
+                dataFormatada, // Exibe a data formatada
+                dataCadastroFormatada // Exibe a data de cadastro formatada
             };
             tbProdutos.addRow(novaLinha);
 
             JOptionPane.showMessageDialog(this, "Dados inseridos com sucesso!", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
 
+            atualizarValores();
+
         } catch (DateTimeParseException e) {
-            JOptionPane.showMessageDialog(this, "Erro ao converter a data: " + e.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Formato de data inválido! Por favor, use o formato dd-MM-aaaa.", "Erro de Data", JOptionPane.ERROR_MESSAGE);
         } catch (NumberFormatException e) {
-            JOptionPane.showMessageDialog(this, "Valor inválido: " + e.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Valor inválido! O campo 'valor' deve conter apenas números. Se for um valor decimal, utilize o ponto (.) como separador.", "Erro de Valor", JOptionPane.ERROR_MESSAGE);
         } catch (RuntimeException e) {
             JOptionPane.showMessageDialog(this, "Erro ao inserir dados: " + e.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
         }
@@ -505,7 +539,15 @@ public class Cadastro extends javax.swing.JFrame {
                 DefaultTableModel tbProdutos = (DefaultTableModel) tbprodutos.getModel();
                 tbProdutos.removeRow(selectedRow);
 
+                tfNome.setText("");
+                tfValor.setText("");
+                tfDataCadastro.setText("");
+                tfData.setText("");
+
                 JOptionPane.showMessageDialog(null, "Produto excluído com sucesso!");
+
+                atualizarValores();
+
             } catch (RuntimeException e) {
                 JOptionPane.showMessageDialog(null, "Erro ao excluir produto: " + e.getMessage());
             }
@@ -531,136 +573,12 @@ public class Cadastro extends javax.swing.JFrame {
     }//GEN-LAST:event_btnSalvarActionPerformed
 
     private void btnSaldoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaldoActionPerformed
-        double totalRecebidos = 0.0;
-        double totalDespesas = 0.0;
-
-        String[] categoriasRecebidos = {
-            "Salário",
-            "Renda extra",
-            "Mesada",
-            "Freelancer"
-        };
-
-        String[] categoriasDespesas = {
-            "Alimentação",
-            "Automóvel",
-            "Saúde",
-            "Lazer",
-            "Investimento",
-            "Outros",
-            "Compras",
-            "Casa"
-        };
-
-        DefaultTableModel tbProdutos = (DefaultTableModel) tbprodutos.getModel();
-        for (int i = 0; i < tbProdutos.getRowCount(); i++) {
-            String classificacao = (String) tbProdutos.getValueAt(i, 1); // Coluna 1: Classificação
-            Object valorObj = tbProdutos.getValueAt(i, 2); // Coluna 2: Valor como Object
-
-            try {
-                double valor;
-                if (valorObj instanceof Double) {
-                    valor = (Double) valorObj;
-                } else if (valorObj instanceof String) {
-                    valor = Double.parseDouble((String) valorObj);
-                } else {
-                    continue;
-                }
-
-                if (Arrays.asList(categoriasRecebidos).contains(classificacao)) {
-                    totalRecebidos += valor;
-                } else if (Arrays.asList(categoriasDespesas).contains(classificacao)) {
-                    totalDespesas += valor;
-                }
-            } catch (NumberFormatException e) {
-                System.out.println("Erro ao converter valor: " + valorObj);
-                JOptionPane.showMessageDialog(this, "Erro ao converter valor: " + valorObj, "Erro", JOptionPane.ERROR_MESSAGE);
-            }
-        }
-
-        double saldoDisponivel = totalRecebidos - totalDespesas;
-        lblSaldo.setText("R$ " + String.format("%.2f", saldoDisponivel));
 
     }//GEN-LAST:event_btnSaldoActionPerformed
 
     private void btnDespesasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDespesasActionPerformed
 
-        DefaultTableModel tbProdutos = (DefaultTableModel) tbprodutos.getModel();
-        double totalDespesas = 0.0;
-
-        String[] categoriasDespesas = {
-            "Alimentação",
-            "Automóvel",
-            "Saúde",
-            "Bem estar",
-            "Investimento",
-            "Outros",
-            "Compras",
-            "Casa"
-        };
-
-        for (int i = 0; i < tbProdutos.getRowCount(); i++) {
-            String classificacao = (String) tbProdutos.getValueAt(i, 1); // Coluna 1: Classificação
-            Object valorObj = tbProdutos.getValueAt(i, 2); // Coluna 2: Valor
-
-            if (valorObj instanceof Number) {
-                double valor = ((Number) valorObj).doubleValue();
-                for (String categoria : categoriasDespesas) {
-                    if (classificacao.equalsIgnoreCase(categoria)) {
-                        totalDespesas += valor;
-                        break;
-                    }
-                }
-            } else if (valorObj instanceof String) {
-                String valorStr = (String) valorObj;
-                try {
-                    double valor = Double.parseDouble(valorStr);
-                    for (String categoria : categoriasDespesas) {
-                        if (classificacao.equalsIgnoreCase(categoria)) {
-                            totalDespesas += valor;
-                            break;
-                        }
-                    }
-                } catch (NumberFormatException e) {
-                    System.out.println("Erro ao converter valor: " + valorStr);
-                }
-            } else {
-                System.out.println("Valor não é um número válido: " + valorObj);
-            }
-        }
-
-        lblDespesas.setText("R$ " + String.format("%.2f", totalDespesas));
-
-
     }//GEN-LAST:event_btnDespesasActionPerformed
-
-    private void btnRecebidosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRecebidosActionPerformed
-
-        double totalRecebidos = 0.0;
-
-        DefaultTableModel tbProdutos = (DefaultTableModel) tbprodutos.getModel();
-        String[] categoriasRecebidos = {"Salário", "Renda extra", "Mesada", "Freelancer"};
-
-        for (int i = 0; i < tbProdutos.getRowCount(); i++) {
-            String classificacao = (String) tbProdutos.getValueAt(i, 1); // Coluna 1: Classificação
-            Object valorObj = tbProdutos.getValueAt(i, 2); // Coluna 2: Valor
-
-            if (valorObj instanceof Number) {
-                double valor = ((Number) valorObj).doubleValue();
-                for (String categoria : categoriasRecebidos) {
-                    if (classificacao.equalsIgnoreCase(categoria)) {
-                        totalRecebidos += valor;
-                        break;
-                    }
-                }
-            } else {
-                System.out.println("Valor não é um número válido: " + valorObj);
-            }
-        }
-
-        // Atualiza o rótulo com o total recebido formatado
-        lblRecebidos.setText("R$ " + String.format("%.2f", totalRecebidos));
-    }//GEN-LAST:event_btnRecebidosActionPerformed
 
     private void tfDataCadastroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfDataCadastroActionPerformed
 
@@ -673,6 +591,81 @@ public class Cadastro extends javax.swing.JFrame {
     private void btnSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSairActionPerformed
         this.dispose();
     }//GEN-LAST:event_btnSairActionPerformed
+
+    private void tfDataActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfDataActionPerformed
+
+    }//GEN-LAST:event_tfDataActionPerformed
+
+    private void btnMostrarOcultarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMostrarOcultarActionPerformed
+        if (mostrarValores) {
+            // Exibir os valores
+
+            // Calcula o total de despesas
+            double totalDespesas = 0.0;
+            double totalRecebidos = 0.0;
+
+            String[] categoriasDespesas = {
+                "Alimentação", "Automóvel", "Saúde", "Bem estar", "Investimento", "Outros", "Compras", "Casa"
+            };
+
+            String[] categoriasRecebidos = {
+                "Salário", "Renda extra", "Mesada", "Freelancer"
+            };
+
+            DefaultTableModel tbProdutos = (DefaultTableModel) tbprodutos.getModel();
+            for (int i = 0; i < tbProdutos.getRowCount(); i++) {
+                String classificacao = (String) tbProdutos.getValueAt(i, 1); // Coluna 1: Classificação
+                Object valorObj = tbProdutos.getValueAt(i, 2); // Coluna 2: Valor
+
+                try {
+                    double valor;
+                    if (valorObj instanceof Double) {
+                        valor = (Double) valorObj;
+                    } else if (valorObj instanceof String) {
+                        valor = Double.parseDouble((String) valorObj);
+                    } else {
+                        continue;
+                    }
+
+                    // Verifica se é uma categoria de despesas ou recebidos
+                    if (Arrays.asList(categoriasRecebidos).contains(classificacao)) {
+                        totalRecebidos += valor;
+                    } else if (Arrays.asList(categoriasDespesas).contains(classificacao)) {
+                        totalDespesas += valor;
+                    }
+                } catch (NumberFormatException e) {
+                    JOptionPane.showMessageDialog(this, "Erro ao converter valor: " + valorObj, "Erro", JOptionPane.ERROR_MESSAGE);
+                }
+            }
+
+            // Calcula o saldo disponível
+            double saldoDisponivel = totalRecebidos - totalDespesas;
+
+            // Atualiza os rótulos com os valores
+            lblRecebidos.setText("R$ " + String.format("%.2f", totalRecebidos));
+            lblDespesas.setText("R$ " + String.format("%.2f", totalDespesas));
+            lblSaldo.setText("R$ " + String.format("%.2f", saldoDisponivel));
+
+            // Altera o texto do botão para "Ocultar"
+            btnMostrarOcultar.setText("Ocultar Valores");
+        } else {
+            // Ocultar os valores
+            lblRecebidos.setText("");
+            lblDespesas.setText("");
+            lblSaldo.setText("");
+
+            // Altera o texto do botão para "Mostrar"
+            btnMostrarOcultar.setText("Mostrar Valores");
+        }
+
+        // Alterna o estado
+        mostrarValores = !mostrarValores;
+
+    }//GEN-LAST:event_btnMostrarOcultarActionPerformed
+
+    private void btnRecebidos1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRecebidos1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnRecebidos1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -715,7 +708,8 @@ public class Cadastro extends javax.swing.JFrame {
     private javax.swing.JButton btnDespesas;
     private javax.swing.JButton btnGanho1;
     private javax.swing.JButton btnGastos;
-    private javax.swing.JButton btnRecebidos;
+    private javax.swing.JButton btnMostrarOcultar;
+    private javax.swing.JButton btnRecebidos1;
     private javax.swing.JButton btnSair;
     private javax.swing.JButton btnSaldo;
     private javax.swing.JButton btnSalvar;
@@ -771,6 +765,49 @@ public class Cadastro extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Falha na conexão com o banco de dados.", "Erro", JOptionPane.ERROR_MESSAGE);
         }
 
+    }
+
+    private void atualizarValores() {
+        double totalRecebidos = 0.0;
+        double totalDespesas = 0.0;
+
+        String[] categoriasRecebidos = {"Salário", "Renda extra", "Mesada", "Freelancer"};
+        String[] categoriasDespesas = {
+            "Alimentação", "Automóvel", "Saúde", "Bem estar", "Investimento", "Outros", "Compras", "Casa"
+        };
+
+        DefaultTableModel tbProdutos = (DefaultTableModel) tbprodutos.getModel();
+        for (int i = 0; i < tbProdutos.getRowCount(); i++) {
+            String classificacao = (String) tbProdutos.getValueAt(i, 1); // Coluna 1: Classificação
+            Object valorObj = tbProdutos.getValueAt(i, 2); // Coluna 2: Valor
+
+            try {
+                double valor;
+                if (valorObj instanceof Double) {
+                    valor = (Double) valorObj;
+                } else if (valorObj instanceof String) {
+                    valor = Double.parseDouble((String) valorObj);
+                } else {
+                    continue;
+                }
+
+                if (Arrays.asList(categoriasRecebidos).contains(classificacao)) {
+                    totalRecebidos += valor;
+                } else if (Arrays.asList(categoriasDespesas).contains(classificacao)) {
+                    totalDespesas += valor;
+                }
+            } catch (NumberFormatException e) {
+                System.out.println("Erro ao converter valor: " + valorObj);
+            }
+        }
+
+        // Calcula o saldo disponível
+        double saldoDisponivel = totalRecebidos - totalDespesas;
+
+        // Atualiza os rótulos com os valores formatados
+        lblRecebidos.setText("R$ " + String.format("%.2f", totalRecebidos));
+        lblDespesas.setText("R$ " + String.format("%.2f", totalDespesas));
+        lblSaldo.setText("R$ " + String.format("%.2f", saldoDisponivel));
     }
 
     public Object getTfNome() {

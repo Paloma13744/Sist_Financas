@@ -59,26 +59,6 @@ public class DadosDAO implements interfaceDAO<Dados> {
         }
     }
 
-    /*
-    @Override
-    public void apagar(Dados d) {
-        String sql = "DELETE FROM DADOS WHERE NOME = ?";
-
-        try (Connection conn = this.conexao.getConexao(); PreparedStatement stmt = conn.prepareStatement(sql)) {
-            stmt.setString(1, d.getNome()); // Usa o nome para a exclusão
-            int rowsAffected = stmt.executeUpdate();
-
-            if (rowsAffected > 0) {
-                System.out.println("Exclusão realizada com sucesso!");
-            } else {
-                System.out.println("Nenhum registro encontrado com o nome: " + d.getNome());
-            }
-        } catch (SQLException ex) {
-            throw new RuntimeException("Erro ao apagar dados: " + ex.getMessage(), ex);
-        }
-
-    
-     */
     @Override
     public ArrayList<Dados> consultar() {
         ArrayList<Dados> listar = new ArrayList<>();

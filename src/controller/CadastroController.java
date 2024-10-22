@@ -15,7 +15,7 @@ public class CadastroController {
     }
 
     public void addDados(int id, String nome, String classificacao, double valor, LocalDate data, LocalDate dataCadastro) {
-        Dados dados = new Dados( id ,nome, classificacao, valor, data, dataCadastro);
+        Dados dados = new Dados(id, nome, classificacao, valor, data, dataCadastro);
         dadosDAO.inserir(dados);
     }
 
@@ -28,12 +28,13 @@ public class CadastroController {
         }
     }
 
-    public void removeDados(String nomeProduto) {
+    public void removeDados(int id) {
         Dados dados = new Dados();
-        dados.setNome(nomeProduto);
+        dados.setId(id);
         dadosDAO.apagar(dados);
     }
 
+   
     public Dados getDadosById(int id) {
         ArrayList<Dados> dadosList = dadosDAO.consultar();
         for (Dados dados : dadosList) {

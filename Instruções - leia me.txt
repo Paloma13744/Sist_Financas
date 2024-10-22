@@ -1,0 +1,13 @@
+
+Alunos: 0056518  e 0056515 - Paloma e Thiago
+
+Este sistema usa o conector mysql-conector-j-8.0.33 
+O script do banco está neste arquivo zipado.  
+Abra o xampp em seu computador com mysql e execute o Main do pacote banco de dados para conectar.
+
+
+Obs:
+conexao = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/sistemafinanceiro", "root", "101100");
+Meu usuário está como root e senha 101100 , mude o seu usuário e senha conforme crie sua conexão no mysql.
+
+Esperamos que goste do sistema !!

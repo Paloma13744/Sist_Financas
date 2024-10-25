@@ -1,7 +1,7 @@
 
 
 # Sistema Financeiro com Swing  💰
-![image](https://github.com/user-attachments/assets/6abbfd49-701e-4027-a709-991d3f4f15e0)
+![image](https://github.com/user-attachments/assets/3849f97f-6d30-4db2-95b1-825b49c4a770)
 
 
 

@@ -34,7 +34,6 @@ public class CadastroController {
         dadosDAO.apagar(dados);
     }
 
-   
     public Dados getDadosById(int id) {
         ArrayList<Dados> dadosList = dadosDAO.consultar();
         for (Dados dados : dadosList) {
@@ -44,4 +43,24 @@ public class CadastroController {
         }
         return null;
     }
+
+    public void updateDados(int id, String nome, String classificacao, double valor, LocalDate data, LocalDate dataCadastro) {
+        Dados dadosExistentes = getDadosById(id);
+
+        if (dadosExistentes != null) {
+            // Atualiza os dados com as novas informações
+            dadosExistentes.setNome(nome);
+            dadosExistentes.setClassificacao(classificacao);
+            dadosExistentes.setValor(valor);
+            dadosExistentes.setData(data);
+            dadosExistentes.setDataCadastro(dataCadastro);
+
+            // Chama o método de atualização no DAO
+            dadosDAO.atualizar(dadosExistentes);
+        } else {
+            System.out.println("Nenhum dado encontrado com o ID: " + id);
+        }
+    }
+
+    
 }

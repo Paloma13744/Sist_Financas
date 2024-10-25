@@ -106,4 +106,27 @@ public class DadosDAO implements interfaceDAO<Dados> {
         return false; // Retorna false se não houver registros
     }
 
+    @Override
+    public void atualizar(Dados ob) {
+        String sql = "UPDATE DADOS SET NOME = ?, CLASSIFICACAO = ?, VALOR = ?, DATA = ?, DATACADASTRO = ? WHERE ID = ?";
+
+        try (Connection conn = this.conexao.getConexao(); PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setString(1, ob.getNome()); 
+            stmt.setString(2, ob.getClassificacao()); 
+            stmt.setDouble(3, ob.getValor()); 
+            stmt.setDate(4, java.sql.Date.valueOf(ob.getData())); 
+            stmt.setDate(5, java.sql.Date.valueOf(ob.getDataCadastro())); 
+            stmt.setInt(6, ob.getId()); 
+
+            int rowsAffected = stmt.executeUpdate();
+            if (rowsAffected > 0) {
+                System.out.println("Atualização realizada com sucesso!");
+            } else {
+                System.out.println("Nenhum registro encontrado com o ID: " + ob.getId());
+            }
+        } catch (SQLException ex) {
+            throw new RuntimeException("Erro ao atualizar dados: " + ex.getMessage(), ex);
+        }
+    }
+
 }

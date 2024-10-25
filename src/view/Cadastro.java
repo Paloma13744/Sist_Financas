@@ -45,7 +45,7 @@ public class Cadastro extends javax.swing.JFrame {
         cadastroController = new CadastroController(dadosDAO);
         carregarDadosTabela();
 
-        DateTimeFormatter formato = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        DateTimeFormatter formato = DateTimeFormatter.ofPattern("dd-MM-yyyy");
         String dataFormatada = LocalDate.now().format(formato);
 
         tfDataCadastro.setText(dataFormatada);
@@ -281,43 +281,47 @@ public class Cadastro extends javax.swing.JFrame {
                                 .addGap(57, 57, 57)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(tfValor, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(161, 161, 161)
                                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                                .addComponent(btnAtualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(lbliconeAtualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                .addComponent(tfValor, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                .addComponent(lbliconeCadastro3, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                                .addGap(0, 0, Short.MAX_VALUE)
+                                                .addComponent(lbliconeAtualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(btnAtualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(btnCadastro, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                                .addComponent(btnCadastro, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(lbliconeCadastro3, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(btnApagar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(btnSalvar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(lbliconeApagar, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(lbliconSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addGap(95, 95, 95))
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addGap(215, 215, 215)
-                                        .addComponent(jLabel1)
-                                        .addGap(0, 0, Short.MAX_VALUE))
+                                                .addGap(18, 18, 18)
+                                                .addComponent(btnApagar, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                                .addComponent(lbliconeApagar, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                                .addGap(17, 17, 17)
+                                                .addComponent(btnSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                                .addComponent(lbliconSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                        .addGap(143, 143, 143))
                                     .addGroup(jPanel1Layout.createSequentialGroup()
                                         .addComponent(lblValor1)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
+                                        .addGap(142, 142, 142)
+                                        .addComponent(jLabel1)
+                                        .addGap(0, 0, Short.MAX_VALUE)))))
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(lblData1, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblDataEntrada)
-                            .addComponent(btnGanho1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(tfDataCadastro, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(tfData, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(6, 6, 6)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(lblData1, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(lblDataEntrada))
+                                .addGap(18, 18, 18)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(tfDataCadastro, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(tfData, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(btnGanho1, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
                                 .addComponent(btnGastos, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
@@ -328,27 +332,25 @@ public class Cadastro extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addContainerGap(20, Short.MAX_VALUE)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(btnSair)
-                                .addGap(66, 66, 66))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(24, 24, 24))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(lblGanho)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(lblNome)
-                            .addComponent(lblValor1))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(btnSair))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(36, 36, 36)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(lblNome)
+                                    .addComponent(lblValor1))))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(tfNome, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnCadastro, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(tfValor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addComponent(lblClassificacao)
@@ -356,7 +358,7 @@ public class Cadastro extends javax.swing.JFrame {
                         .addComponent(cbClassificacao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(22, 22, 22))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(2, 2, 2)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -371,20 +373,20 @@ public class Cadastro extends javax.swing.JFrame {
                                     .addComponent(btnGastos, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(btnGanho1)))
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(lbliconeCadastro3, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(lbliconeAtualizar)
-                                    .addComponent(btnAtualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(btnApagar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(btnCadastro, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(lbliconeCadastro3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(btnApagar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                     .addComponent(lbliconeApagar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(18, 18, 18)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(lbliconSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(btnSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                                    .addComponent(lbliconeAtualizar)
+                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                        .addComponent(btnAtualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(btnSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                        .addContainerGap())))
         );
 
         tbprodutos.setAutoCreateRowSorter(true);
@@ -492,7 +494,7 @@ public class Cadastro extends javax.swing.JFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
+                .addGap(0, 5, Short.MAX_VALUE)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(21, 21, 21)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 508, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -509,7 +511,7 @@ public class Cadastro extends javax.swing.JFrame {
                             .addComponent(btnDespesas, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(btnSaldo, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(37, 37, 37)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(11, Short.MAX_VALUE))
         );
 
         pack();
@@ -539,7 +541,7 @@ public class Cadastro extends javax.swing.JFrame {
         try {
             double valor = Double.parseDouble(valorText);  // Verifica se o valor é numérico
 
-            DateTimeFormatter formato = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+            DateTimeFormatter formato = DateTimeFormatter.ofPattern("dd-MM-yyyy");
             LocalDate data = LocalDate.parse(dataText, formato);
             LocalDate dataCadastro = LocalDate.parse(dataCadastroText, formato);
 
@@ -556,7 +558,7 @@ public class Cadastro extends javax.swing.JFrame {
             tfDataCadastro.setText("");
             tfData.setText("");
 
-            // Formatar as datas para exibição no formato "dd/MM/yyyy"
+            // Formatar as datas para exibição no formato "dd-MM-yyyy"
             String dataFormatada = data.format(formato);
             String dataCadastroFormatada = dataCadastro.format(formato);
 
@@ -577,7 +579,7 @@ public class Cadastro extends javax.swing.JFrame {
             atualizarValores();
 
         } catch (DateTimeParseException e) {
-            JOptionPane.showMessageDialog(this, "Formato de data inválido! Por favor, use o formato dd/MM/yyyy.", "Erro de Data", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Formato de data inválido! Por favor, use o formato dd-MM-yyyy.", "Erro de Data", JOptionPane.ERROR_MESSAGE);
         } catch (NumberFormatException e) {
             JOptionPane.showMessageDialog(this, "Valor inválido! O campo 'valor' deve conter apenas números. Se for um valor decimal, utilize o ponto (.) como separador.", "Erro de Valor", JOptionPane.ERROR_MESSAGE);
         } catch (RuntimeException e) {
@@ -748,7 +750,61 @@ public class Cadastro extends javax.swing.JFrame {
     }//GEN-LAST:event_tfValorActionPerformed
 
     private void btnAtualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAtualizarActionPerformed
-        // TODO add your handling code here:
+        int selectedRow = tbprodutos.getSelectedRow();
+
+        if (selectedRow != -1) {
+            // Pergunta ao usuário se ele realmente deseja atualizar o produto
+            int confirm = JOptionPane.showConfirmDialog(null,
+                    "Você tem certeza que deseja atualizar este registro?",
+                    "Confirmação de Atualização",
+                    JOptionPane.YES_NO_OPTION);
+
+            if (confirm == JOptionPane.YES_OPTION) {
+                // Obtenha o ID do produto a partir do ArrayList de IDs
+                int id = listaIds.get(selectedRow);
+
+                // Obtenha os novos valores dos campos de texto
+                String nome = tfNome.getText().trim();
+                String classificacao = cbClassificacao.getSelectedItem().toString().trim();
+                String valorText = tfValor.getText().trim();
+                String dataText = tfData.getText().trim();
+                String dataCadastroText = tfDataCadastro.getText().trim();
+
+                // Tenta atualizar o produto usando o controlador
+                try {
+                    // Converte o valor para double
+                    double valor = Double.parseDouble(valorText);
+
+                    // Converte as strings de data para LocalDate
+                    LocalDate data = LocalDate.parse(dataText, DateTimeFormatter.ofPattern("dd-MM-yyyy"));
+                    LocalDate dataCadastro = LocalDate.parse(dataCadastroText, DateTimeFormatter.ofPattern("dd-MM-yyyy"));
+
+                    // Atualiza o produto pelo ID usando o cadastroController
+                    cadastroController.updateDados(id, nome, classificacao, valor, data, dataCadastro);
+
+                    // Atualiza a linha da tabela
+                    DefaultTableModel tbProdutos = (DefaultTableModel) tbprodutos.getModel();
+                    tbProdutos.setValueAt(nome, selectedRow, 1);
+                    tbProdutos.setValueAt(classificacao, selectedRow, 2);
+                    tbProdutos.setValueAt(valorText, selectedRow, 3);
+                    tbProdutos.setValueAt(dataCadastro.format(DateTimeFormatter.ofPattern("dd-MM-yyyy")), selectedRow, 4);
+                    tbProdutos.setValueAt(data.format(DateTimeFormatter.ofPattern("dd-MM-yyyy")), selectedRow, 5);
+
+                    JOptionPane.showMessageDialog(this, "Registro atualizado com sucesso!", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
+
+                    atualizarValores();
+                } catch (NumberFormatException e) {
+                    JOptionPane.showMessageDialog(this, "Erro ao converter valor: " + e.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
+                } catch (DateTimeParseException e) {
+                    JOptionPane.showMessageDialog(this, "Erro ao converter datas: " + e.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
+                } catch (RuntimeException e) {
+                    JOptionPane.showMessageDialog(this, "Erro ao atualizar registro: " + e.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
+                }
+            }
+        } else {
+            JOptionPane.showMessageDialog(this, "Nenhuma linha selecionada para atualizar.", "Aviso", JOptionPane.WARNING_MESSAGE);
+        }
+
     }//GEN-LAST:event_btnAtualizarActionPerformed
 
     /**
@@ -836,6 +892,9 @@ public class Cadastro extends javax.swing.JFrame {
             try {
                 ArrayList<Dados> listaDados = dadosDAO.consultar();
 
+                // Formato para a data
+                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+
                 // Percorre a lista de dados e adiciona na tabela
                 for (Dados dados : listaDados) {
                     // Armazena o ID na lista
@@ -847,8 +906,8 @@ public class Cadastro extends javax.swing.JFrame {
                         dados.getNome(),
                         dados.getClassificacao(),
                         dados.getValor(),
-                        dados.getData().toString(),
-                        dados.getDataCadastro().toString()
+                        dados.getData().format(formatter), // Formata a data
+                        dados.getDataCadastro().format(formatter) // Formata a data de cadastro
                     };
                     modelo.addRow(linha);
                 }

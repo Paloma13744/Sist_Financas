@@ -58,7 +58,7 @@
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" attributes="0">
-              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+              <EmptySpace min="0" pref="5" max="32767" attributes="0"/>
               <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
               <Component id="jScrollPane1" min="-2" pref="508" max="-2" attributes="0"/>
@@ -79,7 +79,7 @@
                       <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
                   </Group>
               </Group>
-              <EmptySpace max="32767" attributes="0"/>
+              <EmptySpace pref="11" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -118,55 +118,62 @@
                                   <EmptySpace min="-2" pref="57" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
                                       <Group type="102" alignment="0" attributes="0">
-                                          <Component id="tfValor" min="-2" pref="54" max="-2" attributes="0"/>
-                                          <EmptySpace min="-2" pref="161" max="-2" attributes="0"/>
                                           <Group type="103" groupAlignment="0" attributes="0">
-                                              <Group type="102" alignment="0" attributes="0">
-                                                  <Component id="btnAtualizar" min="-2" pref="99" max="-2" attributes="0"/>
-                                                  <EmptySpace max="-2" attributes="0"/>
-                                                  <Component id="lbliconeAtualizar" min="-2" pref="40" max="-2" attributes="0"/>
-                                              </Group>
-                                              <Group type="102" alignment="0" attributes="0">
-                                                  <Component id="btnCadastro" min="-2" pref="100" max="-2" attributes="0"/>
-                                                  <EmptySpace max="-2" attributes="0"/>
+                                              <Group type="102" attributes="0">
+                                                  <Component id="tfValor" min="-2" pref="54" max="-2" attributes="0"/>
+                                                  <EmptySpace max="32767" attributes="0"/>
                                                   <Component id="lbliconeCadastro3" min="-2" pref="32" max="-2" attributes="0"/>
                                               </Group>
+                                              <Group type="102" alignment="1" attributes="0">
+                                                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                                                  <Component id="lbliconeAtualizar" min="-2" pref="40" max="-2" attributes="0"/>
+                                              </Group>
                                           </Group>
-                                          <EmptySpace max="32767" attributes="0"/>
+                                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                           <Group type="103" groupAlignment="0" attributes="0">
-                                              <Component id="btnApagar" alignment="1" min="-2" pref="99" max="-2" attributes="0"/>
-                                              <Component id="btnSalvar" alignment="1" min="-2" pref="99" max="-2" attributes="0"/>
+                                              <Component id="btnAtualizar" min="-2" pref="99" max="-2" attributes="0"/>
+                                              <Component id="btnCadastro" min="-2" pref="100" max="-2" attributes="0"/>
                                           </Group>
-                                          <EmptySpace max="-2" attributes="0"/>
                                           <Group type="103" groupAlignment="0" attributes="0">
-                                              <Component id="lbliconeApagar" alignment="0" min="-2" pref="32" max="-2" attributes="0"/>
-                                              <Component id="lbliconSalvar" alignment="0" min="-2" pref="32" max="-2" attributes="0"/>
+                                              <Group type="102" alignment="0" attributes="0">
+                                                  <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
+                                                  <Component id="btnApagar" min="-2" pref="99" max="-2" attributes="0"/>
+                                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                                  <Component id="lbliconeApagar" min="-2" pref="32" max="-2" attributes="0"/>
+                                              </Group>
+                                              <Group type="102" alignment="0" attributes="0">
+                                                  <EmptySpace min="-2" pref="17" max="-2" attributes="0"/>
+                                                  <Component id="btnSalvar" min="-2" pref="99" max="-2" attributes="0"/>
+                                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                                  <Component id="lbliconSalvar" min="-2" pref="32" max="-2" attributes="0"/>
+                                              </Group>
                                           </Group>
-                                          <EmptySpace min="-2" pref="95" max="-2" attributes="0"/>
-                                      </Group>
-                                      <Group type="102" alignment="0" attributes="0">
-                                          <EmptySpace min="-2" pref="215" max="-2" attributes="0"/>
-                                          <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
-                                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                                          <EmptySpace min="-2" pref="143" max="-2" attributes="0"/>
                                       </Group>
                                       <Group type="102" alignment="0" attributes="0">
                                           <Component id="lblValor1" min="-2" max="-2" attributes="0"/>
-                                          <EmptySpace max="32767" attributes="0"/>
+                                          <EmptySpace min="-2" pref="142" max="-2" attributes="0"/>
+                                          <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+                                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                                       </Group>
                                   </Group>
                               </Group>
                           </Group>
                           <Group type="103" groupAlignment="1" attributes="0">
-                              <Component id="lblData1" min="-2" pref="73" max="-2" attributes="0"/>
-                              <Component id="lblDataEntrada" alignment="1" min="-2" max="-2" attributes="0"/>
-                              <Component id="btnGanho1" alignment="0" min="-2" pref="81" max="-2" attributes="0"/>
-                          </Group>
-                          <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="tfDataCadastro" min="-2" pref="108" max="-2" attributes="0"/>
-                              <Component id="tfData" min="-2" pref="108" max="-2" attributes="0"/>
-                              <Group type="102" attributes="0">
-                                  <EmptySpace min="6" pref="6" max="-2" attributes="0"/>
+                              <Group type="102" alignment="1" attributes="0">
+                                  <Group type="103" groupAlignment="1" attributes="0">
+                                      <Component id="lblData1" min="-2" pref="73" max="-2" attributes="0"/>
+                                      <Component id="lblDataEntrada" alignment="1" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Component id="tfDataCadastro" min="-2" pref="108" max="-2" attributes="0"/>
+                                      <Component id="tfData" min="-2" pref="108" max="-2" attributes="0"/>
+                                  </Group>
+                              </Group>
+                              <Group type="102" alignment="1" attributes="0">
+                                  <Component id="btnGanho1" min="-2" pref="81" max="-2" attributes="0"/>
+                                  <EmptySpace type="separate" max="-2" attributes="0"/>
                                   <Component id="btnGastos" min="-2" pref="81" max="-2" attributes="0"/>
                               </Group>
                           </Group>
@@ -184,35 +191,33 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" attributes="0">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" alignment="1" attributes="0">
-                          <EmptySpace pref="20" max="32767" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Group type="102" attributes="0">
-                                  <Component id="btnSair" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace min="-2" pref="66" max="-2" attributes="0"/>
-                              </Group>
-                              <Group type="102" attributes="0">
-                                  <Component id="jLabel1" min="-2" pref="46" max="-2" attributes="0"/>
-                                  <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
-                              </Group>
-                          </Group>
-                      </Group>
-                      <Group type="102" attributes="0">
+                      <Group type="102" alignment="0" attributes="0">
                           <Component id="lblGanho" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                      </Group>
+                      <Group type="102" alignment="1" attributes="0">
                           <EmptySpace max="32767" attributes="0"/>
-                          <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="lblNome" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="lblValor1" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="jLabel1" alignment="3" min="-2" pref="46" max="-2" attributes="0"/>
+                                  <Component id="btnSair" alignment="3" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <Group type="102" attributes="0">
+                                  <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="3" attributes="0">
+                                      <Component id="lblNome" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="lblValor1" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                              </Group>
                           </Group>
-                          <EmptySpace max="-2" attributes="0"/>
                       </Group>
                   </Group>
-                  <Group type="103" groupAlignment="0" attributes="0">
+                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Component id="tfNome" min="-2" pref="22" max="-2" attributes="0"/>
-                              <Component id="btnCadastro" min="-2" pref="30" max="-2" attributes="0"/>
-                              <Component id="tfValor" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="tfValor" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Component id="lblClassificacao" min="-2" max="-2" attributes="0"/>
@@ -221,7 +226,7 @@
                           <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
                       </Group>
                       <Group type="102" attributes="0">
-                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" attributes="0">
                                   <EmptySpace min="-2" pref="2" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="3" attributes="0">
@@ -240,26 +245,26 @@
                                   </Group>
                               </Group>
                               <Group type="102" alignment="0" attributes="0">
-                                  <Component id="lbliconeCadastro3" min="-2" pref="30" max="-2" attributes="0"/>
-                                  <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="lbliconeAtualizar" min="-2" max="-2" attributes="0"/>
-                                      <Component id="btnAtualizar" min="-2" pref="30" max="-2" attributes="0"/>
-                                  </Group>
-                              </Group>
-                              <Group type="102" alignment="0" attributes="0">
-                                  <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="btnApagar" alignment="0" min="-2" pref="30" max="-2" attributes="0"/>
+                                      <Group type="103" alignment="0" groupAlignment="0" max="-2" attributes="0">
+                                          <Component id="btnCadastro" alignment="1" min="-2" pref="30" max="-2" attributes="0"/>
+                                          <Component id="lbliconeCadastro3" alignment="1" min="-2" pref="30" max="-2" attributes="0"/>
+                                          <Component id="btnApagar" alignment="1" max="32767" attributes="0"/>
+                                      </Group>
                                       <Component id="lbliconeApagar" alignment="0" min="-2" pref="30" max="-2" attributes="0"/>
                                   </Group>
-                                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
                                       <Component id="lbliconSalvar" min="-2" pref="30" max="-2" attributes="0"/>
-                                      <Component id="btnSalvar" min="-2" pref="30" max="-2" attributes="0"/>
+                                      <Component id="lbliconeAtualizar" min="-2" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="3" attributes="0">
+                                          <Component id="btnAtualizar" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
+                                          <Component id="btnSalvar" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
+                                      </Group>
                                   </Group>
                               </Group>
                           </Group>
-                          <EmptySpace max="32767" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
                       </Group>
                   </Group>
               </Group>
